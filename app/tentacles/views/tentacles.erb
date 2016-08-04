@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+  <head>
+
+  </head>
+  <body>
+    <p>Well, well, well, <%= user.login %>!</p>
+
+    <h2>Repositories</h2>
+    <p>Please select a list of repositories you would like to display the Pull Requests:</p>
+    <form class="user-repos" action="/pull" method="post">
+    <ul class ="">
+      <% repos.each do |repo| %>
+      <li class ="">
+        <input type="checkbox" name="<%= repo[:full_name] %>" value="<%= repo[:url] %>">&nbsp;<%= repo[:full_name] %>
+      </li>
+      <% end %>
+    </ul>
+    <button type="submit">Display PRs</button>
+    </form>
+  </body>
+</html>

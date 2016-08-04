@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+
+    <h2>Pull requests</h2>
+    <p>This is all the opened Pull Requests that should be reviewed and merged.</p>
+
+    <% pull_request.each do |pr| %>
+      <div classs="pr-repo">
+        <div class="pr-repo__link"><a href="<%= pr[0][:head][:repo][:html_url] %>"><%= pr[0][:head][:repo][:full_name] %></a></div>
+        <div class="pr-list">
+          <% pr.each do |req| %>
+            <div class="pr-item">
+              <span class="pr-title"><a href="<%= req[:html_url] %>"><%= req[:title]%></a></span>
+              <div class="pr-details">
+                <span class="pr-details__commit">#<%= req[:number] %></span> opened <span class="pr-details__date"><%= req[:created_at] %></span>
+                &nbsp;by&nbsp;<span class="pr-details__author"><%= req[:user][:login] %></span> on branch <span class="pr-details__branch"><%= req[:base][:ref] %></span>
+              </div><!-- end of pr details -->
+            </div><!-- end of pr item -->
+          <% end %>
+        </div><!-- end of pr list -->
+      </div><!-- end of repo -->
+    <% end %>
+  </body> 
+</html>

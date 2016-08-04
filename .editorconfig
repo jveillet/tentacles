@@ -1,0 +1,11 @@
+# EditorConfig root file
+root = true
+
+# General requirements
+[*]
+# Unix-style newlines with a newline ending every file
+end_of_line = lf
+insert_final_newline = true
+# Indent with 2 spaces
+indent_style = space
+indent_size = 2
