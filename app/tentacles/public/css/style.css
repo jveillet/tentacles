@@ -1,0 +1,54 @@
+/**
+*
+*
+*
+*/
+.pr-repo__link {
+  margin-bottom: 1em;
+}
+.pr-repo__link a:link, a:visited {
+  font-size: 1.5em;
+  color: blue;
+}
+.pr-list {
+  padding-left: .5em;
+  padding-right: .5em;
+}
+.pr-item {
+  margin-bottom: 1.2em;
+}
+.pr-title {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.pr-details {
+  color: grey;
+  font-size: .8em;
+}
+.session-authentication {
+    background-color: #f9f9f9;
+}
+.session {
+  margin-top: 2.2em;
+}
+.session-form {
+    padding: 20px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #d8dee2;
+    border-top: 0;
+    border-radius: 0 0 3px 3px;
+}
+.session-header {
+    margin-bottom: 1em;
+    color: #333;
+    text-align: center;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+.session-header h1 {
+    font-size: 2em;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+}
