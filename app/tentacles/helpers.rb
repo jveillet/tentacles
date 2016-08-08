@@ -1,4 +1,5 @@
 require 'tentacles/helpers/state'
+require 'tentacles/helpers/authentication'
 
 module Tentacles
   ##
