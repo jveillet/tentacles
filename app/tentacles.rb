@@ -4,6 +4,7 @@ require 'sinatra/base'
 require 'rest_client'
 require 'json'
 require 'tentacles/views'
+require 'tentacles/controllers'
 require 'tentacles/application'
 require 'tentacles/helpers'
 
