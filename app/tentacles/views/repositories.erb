@@ -2,22 +2,39 @@
 <meta charset="utf-8">
 <html lang="en">
   <head>
-
+    <link rel="stylesheet" type="text/css" href="css/primer.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
-    <p>Well, well, well, <%= user.login %>!</p>
-
-    <h2>Repositories</h2>
-    <p>Please select a list of repositories you would like to display the Pull Requests:</p>
-    <form class="user-repos" action="/pulls" method="post">
-    <ul class ="">
-      <% repos.each do |repo| %>
-      <li class ="">
-        <input type="checkbox" name="<%= repo[:full_name] %>" value="<%= repo[:url] %>">&nbsp;<%= repo[:full_name] %>
-      </li>
-      <% end %>
-    </ul>
-    <button type="submit">Display PRs</button>
-    </form>
+    <div class="topbar">
+      <div class="container clearfix">
+        <a href="#" class="logo">Tentacles</a>
+        <div class="user">
+          <img src="<%= user.avatar_url %>" alt="<%= user.name %>" class="avatar avatar-small" width="32" height="32">
+          <a href="<%= user.html_url %>" class="username"><%= user.name %></a>
+        </div><!-- end of user -->
+      </div><!-- end of container -->
+    </div><!-- end of topbar -->
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h2>Repositories</h2>
+          <p class="lead">Please select one or more repository to show the Pull Requests.</p>
+          <form action="/pulls" method="post">
+            <% repos.each do |repo| %>
+            <div class="form-checkbox">
+              <label>
+                <input type="checkbox" name="<%= repo[:full_name] %>" value="<%= repo[:url] %>">
+                <%= repo[:full_name] %>
+              </label>
+            </div><!--end of checkbox -->
+            <% end %>
+            <div class="repositories-actions">
+              <button type="submit" class="btn btn-primary">Show pull requests</button>
+            </div><!-- end of actions -->
+          </form><!-- end of form -->
+        </div><!-- end of column -->
+      </div><!-- end of columns -->
+    </div><!-- end of container -->
   </body>
 </html>
