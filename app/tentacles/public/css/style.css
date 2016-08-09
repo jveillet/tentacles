@@ -3,28 +3,7 @@
 *
 *
 */
-.pr-repo__link {
-  margin-bottom: 1em;
-}
-.pr-repo__link a:link, a:visited {
-  font-size: 1.5em;
-  color: blue;
-}
-.pr-list {
-  padding-left: .5em;
-  padding-right: .5em;
-}
-.pr-item {
-  margin-bottom: 1.2em;
-}
-.pr-title {
-  font-size: 1.1em;
-  font-weight: bold;
-}
-.pr-details {
-  color: grey;
-  font-size: .8em;
-}
+/** Home page **/
 .session-authentication {
     background-color: #f9f9f9;
 }
@@ -51,4 +30,103 @@
     font-size: 2em;
     font-weight: 300;
     letter-spacing: -0.5px;
+}
+/** General Repositories **/
+
+/* Mobile first styles */
+.container {
+  width: auto;
+  padding-right: .5em;
+  padding-left: .5em;
+}
+.topbar {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  margin-bottom: 1.5rem;
+  background: rgba(255,255,255,1);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+  border-bottom: 1px solid #C9C9C9;
+  color: #333;
+  overflow: auto;
+}
+.topbar a:link,
+.topbar a:visited {
+  color: #333;
+}
+.logo {
+  font-size: 1.5em;
+}
+.user {
+  float: right;
+  margin-right: 1em;
+}
+.username {
+  display: none;
+  transition: all ease 0.8s;
+}
+/** Desktop styles **/
+@media all and (min-width: 65em) {
+  .topbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,255,255,1);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+    border-bottom: 1px solid #C9C9C9;
+    color: #333;
+  }
+  .logo {
+    font-size: 2em;
+  }
+  .user {
+    float: right;
+    margin-right: 1em;
+    margin-top: .3rem;
+  }
+  .username {
+    margin-left: .5em;
+    display: inline;
+  }
+  .container {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/** Repositories **/
+.repositories-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.repositories-item {
+  margin-bottom: .5em;
+}
+.repositories-actions {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/** Pull requests **/
+.pr-repo__link {
+  margin-bottom: 1em;
+}
+.pr-repo__link a:link, a:visited {
+  font-size: 1.5em;
+  color: blue;
+}
+.pr-list {
+  padding-left: .5em;
+  padding-right: .5em;
+}
+.pr-item {
+  margin-bottom: 1.2em;
+}
+.pr-title {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.pr-details {
+  color: grey;
+  font-size: .8em;
 }
