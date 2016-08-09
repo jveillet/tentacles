@@ -64,6 +64,7 @@
   display: none;
   transition: all ease 0.8s;
 }
+
 /** Desktop styles **/
 @media all and (min-width: 65em) {
   .topbar {
@@ -107,13 +108,13 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
 /** Pull requests **/
 .pr-repo__link {
   margin-bottom: 1em;
 }
 .pr-repo__link a:link, a:visited {
   font-size: 1.5em;
-  color: blue;
 }
 .pr-list {
   padding-left: .5em;
@@ -124,9 +125,18 @@
 }
 .pr-title {
   font-size: 1.1em;
-  font-weight: bold;
+  font-weight: 600;
 }
 .pr-details {
-  color: grey;
-  font-size: .8em;
+  font-size: 1em;
+}
+.commit-ref {
+  position: relative;
+  display: inline-block;
+  padding: 0 5px;
+  font: 0.85em/2 Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  color: #336479;
+  white-space: nowrap;
+  background-color: #e8f0f8;
+  border-radius: 3px;
 }
