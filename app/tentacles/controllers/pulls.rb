@@ -32,7 +32,7 @@ module Tentacles
         params.each do |k, _v|
           pull_requests << client.pull_requests(k)
         end
-        erb :pulls, :locals => { :pull_request => pull_requests }
+        erb :pulls, :locals => { :pull_request => pull_requests, :user => client.user }
       end
     end
   end

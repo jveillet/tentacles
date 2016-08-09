@@ -2,28 +2,43 @@
 <meta charset="utf-8">
 <html lang="en">
   <head>
+    <link rel="stylesheet" type="text/css" href="css/primer.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
-
-    <h2>Pull requests</h2>
-    <p>This is all the opened Pull Requests that should be reviewed and merged.</p>
-
-    <% pull_request.each do |pr| %>
-      <div classs="pr-repo">
-        <div class="pr-repo__link"><a href="<%= pr[0][:head][:repo][:html_url] %>"><%= pr[0][:head][:repo][:full_name] %></a></div>
-        <div class="pr-list">
-          <% pr.each do |req| %>
-            <div class="pr-item">
-              <span class="pr-title"><a href="<%= req[:html_url] %>"><%= req[:title]%></a></span>
-              <div class="pr-details">
-                <span class="pr-details__commit">#<%= req[:number] %></span> opened <span class="pr-details__date"><%= req[:created_at] %></span>
-                &nbsp;by&nbsp;<span class="pr-details__author"><%= req[:user][:login] %></span> on branch <span class="pr-details__branch"><%= req[:base][:ref] %></span>
-              </div><!-- end of pr details -->
-            </div><!-- end of pr item -->
-          <% end %>
-        </div><!-- end of pr list -->
-      </div><!-- end of repo -->
-    <% end %>
+    <div class="topbar">
+      <div class="container clearfix">
+        <a href="#" class="logo">Tentacles</a>
+        <div class="user">
+          <img src="<%= user.avatar_url %>" alt="<%= user.name %>" class="avatar avatar-small" width="32" height="32">
+          <a href="<%= user.html_url %>" class="username"><%= user.name %></a>
+        </div><!-- end of user -->
+      </div><!-- end of container -->
+    </div><!-- end of topbar -->
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h2>Pull requests</h2>
+          <p class="lead">This is all the opened Pull Requests that should be reviewed and merged.</p>
+          <% pull_request.each do |pr| %>
+          <div classs="pr-repo">
+            <div class="pr-repo__link link-blue"><a href="<%= pr[0][:head][:repo][:html_url] %>"><%= pr[0][:head][:repo][:full_name] %></a></div>
+            <div class="pr-list">
+              <% pr.each do |req| %>
+                <div class="pr-item">
+                  <span class="pr-title"><a href="<%= req[:html_url] %>" class="link-gray-dark"><%= req[:title]%></a></span>
+                  <div class="pr-details">
+                    <span class="pr-details__commit text-gray">#<%= req[:number] %></span> opened <span class="pr-details__date"><%= req[:created_at] %></span>
+                    &nbsp;by&nbsp;<span class="pr-details__author"><%= req[:user][:login] %></span> into <span class="pr-details__branch css-truncate expandable commit-ref"><%= req[:base][:ref] %></span>
+                    &nbsp;from&nbsp;<span class="css-truncate expandable commit-ref"><%= req[:head][:ref] %></span>
+                  </div><!-- end of pr details -->
+                </div><!-- end of pr item -->
+              <% end %>
+            </div><!-- end of pr list -->
+          </div><!-- end of repo -->
+        <% end %>
+        </div><!-- end of column -->
+      </div><!-- end of columns -->
+    </div><!-- end of container -->
   </body> 
 </html>

@@ -26,7 +26,6 @@ module Tentacles
 
           session[:access_token] = nil
           session.clear
-          #return authenticate!
           redirect '/'
         end
 
