@@ -27,6 +27,9 @@
                 <input type="checkbox" name="<%= repo[:full_name] %>" value="<%= repo[:url] %>">
                 <%= repo[:full_name] %>
               </label>
+              <% if repo[:private] %>
+                <span class="label label-private">Private</span>
+              <% end %>
             </div><!--end of checkbox -->
             <% end %>
             <div class="repositories-actions">

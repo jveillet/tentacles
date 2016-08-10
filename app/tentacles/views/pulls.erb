@@ -22,7 +22,14 @@
           <p class="lead">This is all the opened Pull Requests that should be reviewed and merged.</p>
           <% pull_request.each do |pr| %>
           <div classs="pr-repo">
-            <div class="pr-repo__link link-blue"><a href="<%= pr[0][:head][:repo][:html_url] %>"><%= pr[0][:head][:repo][:full_name] %></a></div>
+            <div class="pr-repo__link">
+              <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
+              <span class="path-divider">/</span>
+              <a href="<%= pr[0][:head][:repo][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').last %></a>
+              <% if pr[0][:head][:repo][:private] %>
+                <span class="label label-private">Private</span>
+              <% end %>
+            </div>
             <div class="pr-list">
               <% pr.each do |req| %>
                 <div class="pr-item">
