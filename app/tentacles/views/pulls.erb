@@ -27,6 +27,11 @@
               <% pr.each do |req| %>
                 <div class="pr-item">
                   <span class="pr-title"><a href="<%= req[:html_url] %>" class="link-gray-dark"><%= req[:title]%></a></span>
+                  <span class="labels">
+                  <% req[:labels].each do |label| %>
+                    <span class="label" style="background-color: #<%= label[:color]; %>;color: #fff"><%= label[:name] %></span>
+                  <% end %>
+                  </span><!-- end of labels -->
                   <div class="pr-details">
                     <span class="pr-details__commit text-gray">#<%= req[:number] %></span> opened <span class="pr-details__date"><%= req[:created_at] %></span>
                     &nbsp;by&nbsp;<span class="pr-details__author"><%= req[:user][:login] %></span> into <span class="pr-details__branch css-truncate expandable commit-ref"><%= req[:base][:ref] %></span>
