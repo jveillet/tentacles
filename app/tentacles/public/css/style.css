@@ -40,8 +40,7 @@
   padding-left: .5em;
 }
 .topbar {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
+  line-height: 1.8;
   margin-bottom: 1.5rem;
   background: rgba(255,255,255,1);
   background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
@@ -59,17 +58,27 @@
 .user {
   float: right;
   margin-right: 1em;
+  margin-top: .2em;
 }
-.username {
+.user-card {
+  line-height: 1.2;
+}
+.user-fullname {
   display: none;
   transition: all ease 0.8s;
+}
+.user-login {
+  display: none;
+  transition: all ease 0.8s;
+}
+.user-avatar {
+  float: left;
 }
 
 /** Desktop styles **/
 @media all and (min-width: 65em) {
   .topbar {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    line-height: 1.8;
     margin-bottom: 1.5rem;
     background: rgba(255,255,255,1);
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
@@ -82,9 +91,13 @@
   .user {
     float: right;
     margin-right: 1em;
-    margin-top: .3rem;
+    margin-top: .5rem;
   }
-  .username {
+  .user-fullname {
+    margin-left: .5em;
+    display: inline;
+  }
+  .user-login {
     margin-left: .5em;
     display: inline;
   }
@@ -96,6 +109,10 @@
 }
 
 /** Repositories **/
+.lead-align {
+  padding-left: 0.625em;
+  padding-right: .625em;
+}
 .repositories-list {
   list-style-type: none;
   margin: 0;

@@ -10,8 +10,11 @@
       <div class="container clearfix">
         <a href="#" class="logo">Tentacles</a>
         <div class="user">
-          <img src="<%= user.avatar_url %>" alt="<%= user.name %>" class="avatar avatar-small" width="32" height="32">
-          <a href="<%= user.html_url %>" class="username"><%= user.name %></a>
+          <p class="user-card">
+            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="32" height="32">
+            <a href="<%= user.html_url %>" class="user-fullname link-gray-dark"><%= user.name %></a><br>
+            <small class="user-login text-gray">@<%= user.login %></small>
+          </p><!-- end of user card -->
         </div><!-- end of user -->
       </div><!-- end of container -->
     </div><!-- end of topbar -->
@@ -19,7 +22,7 @@
       <div class="columns">
         <div class="column">
           <h2>Pull requests</h2>
-          <p class="lead">This is all the opened Pull Requests that should be reviewed and merged.</p>
+          <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged.</p>
           <% pull_request.each do |pr| %>
           <div classs="pr-repo">
             <div class="pr-repo__link">
@@ -52,5 +55,18 @@
         </div><!-- end of column -->
       </div><!-- end of columns -->
     </div><!-- end of container -->
+    <script src="js/bliss.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script>
+      // Document is ready
+      $.ready().then(function() {
+        // Loop over the dates to print a more friendly date like "1 day ago"
+        var dates = $$(".pr-details__date").map(function(element) {
+          var momentDate = moment(element.innerText).fromNow();
+          element.innerHTML = momentDate;
+          return element.innerHTML;
+        });
+      });
+    </script>
   </body> 
 </html>
