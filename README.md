@@ -1,7 +1,10 @@
 # Tentacles
-Tentacles is a project aimed to to agregate all the pull requests from differents repos into a single web page.
+All the pull requests from your repositories (and the organizations you belong to) currated into a single web page.
+All the results are displayed in a Github fashion (like the Pulls tab), but separated by repo.
 
-This is a very very early development version, use at your own risks.
+_(Screencap coming later)_
+
+__*This is a very very early development version, use at your own risks.*__
 
 ## Configuration
 
