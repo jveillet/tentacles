@@ -23,7 +23,15 @@
         <div class="column">
           <h2>Pull requests</h2>
           <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged.</p>
+          <% if pull_request.nil? || pull_request.empty? %>
+            <div class="blankslate">
+              <h3>Nothing to show here.</h3>
+              <p>There is no Pull Request pending for this repositories</p>
+              <p>Please go back to the <a href="/repositories" title="Repositories selection page">Repositories</a> selection.</p>
+            </div>
+          <% end %>
           <% pull_request.each do |pr| %>
+          <% next if pr.nil? || pr.empty? %>
           <div classs="pr-repo">
             <div class="pr-repo__link">
               <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
@@ -35,6 +43,7 @@
             </div>
             <div class="pr-list">
               <% pr.each do |req| %>
+                <% next if req.nil? || req.empty? %>
                 <div class="pr-item">
                   <span class="pr-title"><a href="<%= req[:html_url] %>" class="link-gray-dark"><%= req[:title]%></a></span>
                   <span class="labels">
