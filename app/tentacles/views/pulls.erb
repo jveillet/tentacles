@@ -47,6 +47,15 @@
                     &nbsp;by&nbsp;<span class="pr-details__author"><%= req[:user][:login] %></span> into <span class="pr-details__branch css-truncate expandable commit-ref"><%= req[:base][:ref] %></span>
                     &nbsp;from&nbsp;<span class="css-truncate expandable commit-ref"><%= req[:head][:ref] %></span>
                   </div><!-- end of pr details -->
+                  <% if req[:comments_count].to_i > 0 %>
+                  <div class="pr-details">
+                     <object type="image/svg+xml" data="img/icon-comment.svg" class="icon-comment" width="16" heigh="16">
+                      <!-- fallback image -->
+                      <img src="img/icon-comment.png" alt="comments" width="16" heigh="16">
+                    </object>
+                    <%= req[:comments_count] %> comment<%= 's' if req[:comments_count].to_i > 1 %>
+                  </div><!-- end of pr details -->
+                  <% end %>
                 </div><!-- end of pr item -->
               <% end %>
             </div><!-- end of pr list -->

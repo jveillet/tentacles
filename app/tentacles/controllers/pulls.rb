@@ -42,6 +42,9 @@ module Tentacles
             issue_number = request[:number]
             labels = client.labels_for_issue(repo, issue_number)
             request[:labels] = labels
+            # Get the comments as well
+            comments = client.pull_request_comments(repo, issue_number)
+            request[:comments_count] = comments.count
           end
         end
         erb :pulls, :locals => { :pull_request => pull_requests, :user => client.user }
