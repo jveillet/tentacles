@@ -32,7 +32,7 @@ WORKDIR /app\n
 COPY Gemfile /app/\n
 COPY Gemfile.lock /app/\n
 \n
-# Give access to doctor user\n
+# Give access to ${USERNAME} user\n
 RUN chown -R ${USERNAME}:${USERGROUP} /app\n
 RUN chown -R ${USERNAME}:${USERGROUP} /bundle\n
 RUN chown -R ${USERNAME}:${USERGROUP} ${HOMEDIR}\n
@@ -62,3 +62,6 @@ echo ${FILE} >> Dockerfile
 
 # launch the docker environement setup
 docker-compose build
+
+# launch the bundle install (gem install)
+docker-compose run --rm web bundle install
