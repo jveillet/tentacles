@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'tentacles/controllers/base'
 require 'tentacles/helpers/authentication'
+require 'tentacles/helpers/client'
 
 module Tentacles
   module Controllers
@@ -8,30 +9,27 @@ module Tentacles
     # Class Repositories
     #
     class Repositories < Base
-
       helpers Helpers::Authentication
+      helpers Helpers::Client
 
       before do
-        redirect '/' unless authenticated?
+        logout unless authenticated?
       end
 
       get '/' do
-        access_token = session[:access_token]
-        begin
-          client = Octokit::Client.new(:access_token => access_token)
-        rescue => e
+        #access_token = session[:access_token]
+        #begin
+          #client = Octokit::Client.new(:access_token => access_token)
+        #rescue => e
           # request didn't succeed because the token was revoked so we
           # invalidate the token stored in the session and render the
           # index page so that the user can start the OAuth flow again
+        #  logout
+        #end
 
-          session[:access_token] = nil
-          session.clear
-          redirect '/'
-        end
-
-        session[:user] = client.user
         repositories = client.repositories
-        erb :repositories, :locals => { :user => client.user, :repos => repositories }
+        user = client.user
+        erb :repositories, :locals => { :user => user, :repos => repositories }
       end
     end
   end
