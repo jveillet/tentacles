@@ -23,8 +23,16 @@
         <div class="column">
           <h2>Repositories</h2>
           <p class="lead">Please select one or more repository to show the Pull Requests.</p>
+          <% if repos.nil? || repos.empty? %>
+            <div class="blankslate">
+              <h3>Nothing to show here.</h3>
+              <p>We didn't find any repository on your profile.</p>
+              <p>Please head to <a href="https://github.com" title="Github website">Github</a> to create a new Repository.</p>
+            </div><!-- end of blank state -->
+          <% end %>
           <form action="/pulls" method="post">
             <% repos.each do |repo| %>
+            <% next if repo.nil? %>
             <div class="form-checkbox">
               <label>
                 <input type="checkbox" name="<%= repo[:full_name] %>" value="<%= repo[:url] %>">
@@ -35,9 +43,11 @@
               <% end %>
             </div><!--end of checkbox -->
             <% end %>
+            <% if !repos.nil? && !repos.empty? %>
             <div class="repositories-actions">
               <button type="submit" class="btn btn-primary">Show pull requests</button>
             </div><!-- end of actions -->
+            <% end %>
           </form><!-- end of form -->
         </div><!-- end of column -->
       </div><!-- end of columns -->
