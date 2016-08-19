@@ -30,12 +30,18 @@
               <p>Please head to <a href="https://github.com" title="Github website">Github</a> to create a new Repository.</p>
             </div><!-- end of blank state -->
           <% end %>
+          <div class="filters form-checkbox">
+            <label>
+              <input type="checkbox" name="select_all" onClick="javascript:selectAll();">
+              <em class="highlight filter__selectall">Select all repositories</em>
+            </label>
+          </div>
           <form action="/pulls" method="post">
             <% repos.each do |repo| %>
             <% next if repo.nil? %>
             <div class="form-checkbox">
               <label>
-                <input type="checkbox" name="<%= repo[:full_name] %>" value="<%= repo[:url] %>">
+                <input type="checkbox" name="<%= repo[:full_name] %>" value="<%= repo[:url] %>" class="js-repository">
                 <%= repo[:full_name] %>
               </label>
               <% if repo[:private] %>
@@ -52,5 +58,26 @@
         </div><!-- end of column -->
       </div><!-- end of columns -->
     </div><!-- end of container -->
+    <script src="js/bliss.min.js"></script>
+    <script>
+      // Document is ready
+      $.ready().then(function() {
+        // Check/Uncheck all the repositories
+        selectAll = function() {
+          $$('.js-repository').map(function(element) {
+            element.checked = !element.checked;
+            return element;
+          });
+          // Change the label text with the checkbox value
+          var labelNode = $('.filter__selectall');
+          var selectAllInput = $('[name="select_all"]');
+          if(selectAllInput.checked) {
+            labelNode.innerText = "Deselect all repositories"
+          } else {
+            labelNode.innerText = "Select all repositories"
+          }
+        };
+      });
+    </script>
   </body>
 </html>
