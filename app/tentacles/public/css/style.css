@@ -110,20 +110,22 @@
 
 /** Repositories **/
 .lead-align {
-  padding-left: 0.625em;
+  padding-left: .625em;
   padding-right: .625em;
 }
-.repositories-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-.repositories-item {
-  margin-bottom: .5em;
-}
-.repositories-actions {
+.repo-actions {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+.repo-filters {
+  max-width: 100%;
+  display: block;
+}
+@media all and (min-width: 65em) {
+  .repo-filters {
+    max-width: 200px;
+    float: right;
+  } 
 }
 
 /** Pull requests **/
@@ -183,4 +185,10 @@
   float: left;
   margin-right: .5em;
   margin-top: .2em;
+}
+
+/** Utilities **/
+.u-hide {
+  display: none;
+  transition: all ease 0.8s;
 }

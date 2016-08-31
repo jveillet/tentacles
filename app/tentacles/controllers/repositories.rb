@@ -27,7 +27,9 @@ module Tentacles
         #  logout
         #end
 
-        repositories = client.repositories
+        visibility = params['visibility'] || 'all'
+
+        repositories = client.repositories(nil, {:visibility => visibility});
         user = client.user
         erb :repositories, :locals => { :user => user, :repos => repositories }
       end

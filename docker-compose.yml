@@ -12,4 +12,3 @@ web:
   volumes_from:
     - bundler
   command: bundle exec foreman start web
-  #command: bundle exec rails s -p 3000 -b '0.0.0.0'
