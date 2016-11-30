@@ -20,6 +20,12 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    redis (3.3.2)
+    redis-rack (1.6.0)
+      rack (~> 1.5)
+      redis-store (~> 1.2.0)
+    redis-store (1.2.0)
+      redis (>= 2.2)
     rest-client (1.6.9)
       mime-types (~> 1.16)
     sawyer (0.7.0)
@@ -50,6 +56,7 @@ DEPENDENCIES
   json
   octokit (~> 4.0)
   puma
+  redis-rack
   rest-client (~> 1.6.3)
   shotgun
   sinatra

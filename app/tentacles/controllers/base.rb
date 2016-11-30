@@ -7,7 +7,7 @@ module Tentacles
     class Base < Sinatra::Base
       configure do
         set :root, './app/tentacles'
-        set :sessions, true
+        set :sessions, false
         set :show_exceptions, true
       end
 

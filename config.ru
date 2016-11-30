@@ -1,12 +1,15 @@
 require 'bundler'
 require 'dotenv'
 require 'rack'
+require 'sinatra'
 require 'sinatra/base'
+require 'rack/session/redis'
+
+Dotenv.load
+use Rack::Session::Redis, :redis_server => ENV.fetch('REDIS_URL') { fail('REDIS_URL not set') }
 
 Bundler.setup(:default)
 $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/app")
-
-Dotenv.load
 
 require 'tentacles'
 

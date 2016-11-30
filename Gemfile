@@ -8,9 +8,10 @@ gem 'json'
 gem 'dotenv'
 gem 'puma'
 gem 'rest-client', '~> 1.6.3'
+gem 'redis-rack'
 
 # Github API
-gem "octokit", "~> 4.0"
+gem 'octokit', '~> 4.0'
 
 group :development do
   gem 'foreman'
