@@ -6,7 +6,7 @@ bundler:
 web:
   build: .
   ports:
-    - "4010:3000"
+    - "4011:3000"
   volumes:
     - .:/app/
   volumes_from:

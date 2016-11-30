@@ -1,0 +1,38 @@
+{
+  "name": "tentacles-github",
+  "description": "View all your pull requests from all your repositories",
+  "keywords": ["github", "pull requests", "status"],
+  "repository": "https://github.com/jveillet/tentacles",
+  "image": "heroku/ruby",
+  "addons": [],
+  "env": {
+    "GH_CALLBACK_URL": {
+      "description": "Oauth2 github callback URL"
+    },
+    "GH_CLIENT_ID": {
+      "description": "Oauth2 github client Id"
+    },
+    "GH_CLIENT_SECRET": {
+      "description": "Oauth2 github client secret"
+    },
+    "LANG": {
+      "description": "The default language for the system",
+      "value": "en_US.UTF-8"
+    },
+    "PORT": {
+      "description": "Web server port",
+      "required": false
+    },
+    "RACK_ENV": {
+      "decription": "RACK environment setting",
+      "value": "production",
+      "required": false
+    },
+    "WEB_THREAD": {
+      "description": "Number of threads"
+    },
+    "WEB_WORKERS": {
+      "description": "Number of workers"
+    }
+  }
+}
