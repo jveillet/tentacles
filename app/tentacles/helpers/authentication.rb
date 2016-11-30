@@ -4,8 +4,9 @@ module Tentacles
     # Authentication helper
     module Authentication
       def authenticated?
-        session && session[:access_token]
+        !session.nil? && !session[:access_token].nil?
       end
+
       def logout
         session[:access_token] = nil
         session.clear
