@@ -109,6 +109,3 @@ npm-debug.log
 *.p12
 *.pem
 *.cert
-
-# Docker
-Dockerfile

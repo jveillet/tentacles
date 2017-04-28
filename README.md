@@ -21,9 +21,22 @@ GH_CALLBACK_URL=<Your-Tentacles-OAuth-Callback-URL>
 
 ## Installation (using docker)
 
+Clone the repository:
 ```bash
-git clone git@github.com:jveillet/tentacles.git
-cd tentacles/
-sh install.sh
-docker-compose up
+$ git clone git@github.com:jveillet/tentacles.git
+$ cd tentacles
+```
+
+Install the project with Docker:
+```bash
+$ docker build
+$ docker-compose run --rm web bundle install --clean
+```
+
+## Usage
+
+```bash
+$ docker-compose run --rm web
+$ # Or
+$ docker-compose up
 ```
