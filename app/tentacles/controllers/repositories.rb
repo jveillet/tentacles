@@ -17,21 +17,21 @@ module Tentacles
       end
 
       get '/' do
-        #access_token = session[:access_token]
-        #begin
-          #client = Octokit::Client.new(:access_token => access_token)
-        #rescue => e
-          # request didn't succeed because the token was revoked so we
-          # invalidate the token stored in the session and render the
-          # index page so that the user can start the OAuth flow again
-        #  logout
-        #end
+        display_filter = visibility(params)
 
-        visibility = params['visibility'] || 'all'
-
-        repositories = client.repositories(nil, {:visibility => visibility});
+        repositories = client.repositories(nil, :visibility => display_filter)
         user = client.user
         erb :repositories, :locals => { :user => user, :repos => repositories }
+      end
+
+      def visibility(params)
+        return 'all' unless params
+        result = if %w(public private).include? params['visibility']
+                   params['visibility']
+                 else
+                   'all'
+                 end
+        result
       end
     end
   end
