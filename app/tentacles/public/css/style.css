@@ -117,17 +117,40 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+.repo-filters ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .repo-filters {
-  max-width: 100%;
-  display: block;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
-@media all and (min-width: 65em) {
-  .repo-filters {
-    max-width: 200px;
-    float: right;
-  } 
+.repo-filter__list {
+  /* On small screens, we are no longer using row direction but column */
+  flex-direction: column;
+  justify-content: flex-start;
 }
-
+.repo-filter__item {
+  margin-right: auto;
+  margin-bottom: 1em;
+}
+.repo-filter__item .selected {
+  border-bottom: .25em solid #e36209;
+}
+@media all and (min-width: 47em) {
+  .repo-filter__list {
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: row;
+    /* This aligns items to the end line on main-axis */
+    align-items: center;
+    justify-content: space-around;
+  }
+  .repo-filter__item {
+    margin-right: 0;
+  }
+}
 /** Pull requests **/
 .pr-repo__link {
   margin-bottom: 1em;
