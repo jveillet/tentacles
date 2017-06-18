@@ -8,27 +8,27 @@ RUN apt-get clean && apt-get update -y \
 RUN useradd -ms /bin/bash tentacles
 RUN echo '%tentacles ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-RUN mkdir -p /app /bundle
+RUN mkdir -p /tentacles /bundle
 
-WORKDIR /app
+WORKDIR /tentacles
 
-COPY Gemfil* /app/
+COPY Gemfil* /tentacles/
 
 # Give access to tentacles user
-RUN chown -hR tentacles:tentacles /app /bundle
+RUN chown -hR tentacles:tentacles /tentacles /bundle
 
 USER tentacles
 
  # Set bundler config
 ENV BUNDLE_JOBS=10 \
     BUNDLE_PATH=/bundle \
-    BUNDLE_APP_CONFIG=/app/.bundle-docker/
+    BUNDLE_APP_CONFIG=/tentacles/.bundle-docker/
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config
 RUN bundle install --clean
 
-COPY . /app/
+COPY . /tentacles/
 
 EXPOSE 3000
 ENV PORT 3000

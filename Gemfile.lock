@@ -28,6 +28,7 @@ GEM
       redis-store (~> 1.2.0)
     redis-store (1.2.0)
       redis (>= 2.2)
+    require_all (1.4.0)
     rest-client (1.6.9)
       mime-types (~> 1.16)
     sawyer (0.8.1)
@@ -60,6 +61,7 @@ DEPENDENCIES
   puma
   redis
   redis-rack
+  require_all
   rest-client (~> 1.6.3)
   shotgun
   sinatra
