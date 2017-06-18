@@ -1,23 +1,24 @@
+require './app/helpers/authentication'
+require './app/helpers/client'
+require './app/helpers/users'
 require 'sinatra/base'
-require 'tentacles/controllers/base'
-require 'tentacles/helpers/authentication'
-require 'tentacles/helpers/client'
 require 'uri'
+require_relative 'application_controller'
 
-module Tentacles
   module Controllers
     ##
     # Class Pull requests
     #
-    class Pulls < Base
+    class PullsController < ApplicationController
       helpers Helpers::Authentication
       helpers Helpers::Client
+      helpers Helpers::Users
 
       before do
-        logout unless authenticated?
+        logout unless current_user
       end
 
-      post '/' do
+      post '/pulls' do
         # Get every pull_requests with the repo name
         pull_requests = []
         params.each do |k, _v|
@@ -43,4 +44,3 @@ module Tentacles
       end
     end
   end
-end
