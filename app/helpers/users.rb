@@ -6,15 +6,17 @@ module Helpers
   #
   module Users
     def access_token
-      session[:access_token] || nil
+      return unless session
+      session[:access_token]
     end
 
     def current_user
-      users.find_by_access_token(access_token)
+      session[:user] ||= users.find_by_access_token(access_token)
     end
 
     def logout
       session[:access_token] = nil
+      session[:user] = nil
       session.clear
       redirect '/'
     end

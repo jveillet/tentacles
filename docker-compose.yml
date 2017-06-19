@@ -13,7 +13,7 @@ web:
   ports:
     - "4011:3000"
   volumes:
-    - .:/app/
+    - .:/tentacles/
   volumes_from:
     - bundler
   command: bundle exec foreman start web

@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     set :logging, true
+    set :sessions, false
   end
   use Rack::Session::Pool, :cookie_only => false
   helpers Helpers::State
