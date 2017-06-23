@@ -11,8 +11,8 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     set :logging, true
     set :sessions, false
+    set :session_secret, ENV['SESSION_SECRET'].to_s
   end
-  use Rack::Session::Pool, :cookie_only => false
   helpers Helpers::State
 
   get '/' do
