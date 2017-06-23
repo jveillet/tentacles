@@ -1,5 +1,4 @@
 require 'dotenv'
-require 'require_all'
 require 'rack/session/redis'
 
 ENV['SINATRA_ENV'] ||= 'development'
@@ -7,10 +6,13 @@ ENV['SINATRA_ENV'] ||= 'development'
 require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 
-require_all 'app'
-
 use Rack::Session::Redis,
-    :redis_server => "#{ENV.fetch('REDIS_URL')}/0/rack:session"
+  :redis_server => ENV.fetch('REDIS_URL').to_s
+
+require './app/controllers/application_controller'
+require './app/controllers/authentication_controller'
+require './app/controllers/repositories_controller'
+require './app/controllers/pulls_controller'
 
 use Controllers::AuthenticationController
 use Controllers::RepositoriesController
