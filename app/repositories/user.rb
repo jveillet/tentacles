@@ -1,12 +1,20 @@
 require './app/datasources/github/user'
+require './app/utils/cache'
 
 module Repositories
   ##
   # User repository
   #
   class User
+    include Utils::Cache
+
+    USERS_CACHE = 7200
+
     def find_by_access_token(access_token)
-      users.find_by_access_token(access_token)
+      key = cache_key('user_by_access_token', access_token)
+      load_from_cache(key, ttl: USERS_CACHE) do
+        users.find_by_access_token(access_token)
+      end
     end
 
     def authorize_with_code(code)

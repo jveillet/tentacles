@@ -11,7 +11,7 @@ module Helpers
     end
 
     def current_user
-      session[:user] ||= users.find_by_access_token(access_token: access_token)
+      users.find_by_access_token(access_token: access_token)
     end
 
     def logout
