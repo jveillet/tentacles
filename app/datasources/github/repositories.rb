@@ -8,12 +8,8 @@ module Datasources
     class Repositories
       include Connection
 
-      def initialize(access_token)
-        @access_token = access_token
-      end
-
-      def find_repositories(visibility_filter)
-        client(@access_token)
+      def find_repositories(visibility_filter, access_token:)
+        client(access_token)
           .repositories(nil, :visibility => visibility_filter)
       end
     end

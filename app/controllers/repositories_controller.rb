@@ -11,8 +11,7 @@ module Controllers
     helpers Helpers::Users
     helpers do
       def repositories
-        @repositories ||=
-          Repositories::Repositories.new(access_token)
+        @repositories ||= Repositories::Repositories.new
       end
 
       def visibility(params)
@@ -33,8 +32,10 @@ module Controllers
     get '/repositories' do
       display_filter = visibility(params)
 
-      repos = repositories.find_repositories(
-        visibility_filter: display_filter
+      repos = repositories.find_repositories_by_user(
+        current_user,
+        visibility_filter: display_filter,
+        access_token: access_token
       )
       erb :repositories, :locals => { :user => current_user, :repos => repos }
     end

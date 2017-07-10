@@ -14,5 +14,6 @@ gem 'sinatra-contrib'
 
 group :development do
   gem 'foreman'
+  gem 'pry'
   gem 'shotgun'
 end
