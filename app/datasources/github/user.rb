@@ -8,7 +8,7 @@ module Datasources
     class User
       include Connection
 
-      def find_by_access_token(access_token)
+      def find_by_access_token(access_token:)
         client(access_token).user
       end
 
