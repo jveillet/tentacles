@@ -64,7 +64,7 @@
             <% next if repo.nil? %>
             <div class="form-checkbox">
               <label>
-                <input type="checkbox" name="<%= repo[:full_name] %>" value="<%= repo[:url] %>" class="js-repo-item repo-list__item" data-private="<%= repo[:private] %>">
+                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="js-repo-item repo-list__item" data-private="<%= repo[:private] %>">
                 <%= repo[:full_name] %>
               </label>
               <% if repo[:private] %>
