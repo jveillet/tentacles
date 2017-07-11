@@ -1,4 +1,4 @@
-FROM ruby:2.4.0-slim
+FROM heroku/heroku:16
 
 RUN apt-get clean && apt-get update -y \
     && apt-get install -y --no-install-recommends git-core build-essential sudo libffi-dev libxml2-dev libssl-dev curl apt-utils\
