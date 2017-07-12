@@ -1,4 +1,5 @@
 require_relative 'connection'
+require_relative 'pagination'
 
 module Datasources
   module Github
@@ -8,9 +9,18 @@ module Datasources
     class Repositories
       include Connection
 
-      def find_repositories(visibility_filter, access_token:)
-        client(access_token)
-          .repositories(nil, :visibility => visibility_filter)
+      PER_PAGE = Integer(ENV['DEFAULT_PER_PAGE'] || 100)
+
+      def find_repositories(filter, access_token:, per_page: PER_PAGE)
+        github = client(access_token)
+        records = github.repositories(
+          nil,
+          :visibility => filter,
+          :per_page => per_page
+        )
+        return [] unless records
+        pagination = Pagination.new(records)
+        pagination.next_pages(github.last_response)
       end
     end
   end

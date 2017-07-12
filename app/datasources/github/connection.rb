@@ -13,7 +13,6 @@ module Datasources
       private
 
       def connect(access_token)
-        Octokit.auto_paginate = true
         @connect ||= Octokit::Client.new(
           :access_token => access_token
         )
