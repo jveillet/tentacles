@@ -1,5 +1,3 @@
-require './app/helpers/authentication'
-require './app/helpers/client'
 require './app/helpers/users'
 require './app/repositories/issues'
 require 'sinatra/base'
@@ -11,8 +9,6 @@ module Controllers
   # Class Pull requests
   #
   class PullsController < ApplicationController
-    helpers Helpers::Authentication
-    helpers Helpers::Client
     helpers Helpers::Users
     helpers do
       def github_issues
