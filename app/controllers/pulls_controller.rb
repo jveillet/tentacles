@@ -1,6 +1,7 @@
 require './app/helpers/authentication'
 require './app/helpers/client'
 require './app/helpers/users'
+require './app/repositories/issues'
 require 'sinatra/base'
 require 'uri'
 require_relative 'application_controller'
@@ -13,35 +14,40 @@ module Controllers
     helpers Helpers::Authentication
     helpers Helpers::Client
     helpers Helpers::Users
+    helpers do
+      def github_issues
+        @github_issues ||= Repositories::Issues.new
+      end
+    end
 
     before do
       logout unless current_user
     end
 
     post '/pulls' do
-      # Get every pull_requests with the repo name
       pull_requests = []
+
       params[:repos].each do |repo|
         next unless repo && !repo.empty?
-        pr = client.pull_requests(repo)
-        pull_requests << pr unless pr.nil? || pr.empty?
-      end
-      # loop throught pull requests to get the labels
-      # add labels to the original hash
-      pull_requests.each do |pr|
-        next if pr.nil? || pr[0].nil?
-        repo = pr[0][:head][:repo][:full_name]
-        pr.each do |request|
-          issue_number = request[:number]
-          labels = client.labels_for_issue(repo, issue_number)
-          request[:labels] = labels || {}
-          # Get the comments as well
-          comments = client.pull_request_comments(repo, issue_number)
-          request[:comments_count] = comments.count
+        issues = github_issues.find_issues_by_repo(repo, access_token: access_token)
+        next if issues.empty?
+        issues.each do |issue|
+          issue[:labels] = github_issues.find_labels_by_issue(
+            repo,
+            issue[:number],
+            access_token: access_token
+          )
+          comments = github_issues.find_comments_by_issue(
+            repo,
+            issue[:number],
+            access_token: access_token
+          )
+          issue[:comments_count] = comments.count
         end
+        pull_requests << issues
       end
 
-      erb :pulls, :locals => { :pull_request => pull_requests, :user => client.user }
+      erb :pulls, :locals => { :pull_request => pull_requests, :user => current_user }
     end
   end
 end
