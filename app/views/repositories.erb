@@ -12,8 +12,8 @@
         <div class="user">
           <p class="user-card">
             <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="32" height="32">
-            <a href="<%= user.html_url %>" class="user-fullname link-gray-dark"><%= user.name %></a><br>
-            <small class="user-login text-gray">@<%= user.login %></small>
+            <span class="user-fullname text-white"><%= user.name %></span><br>
+            <a href="<%= user.html_url %>" class="user-login link-gray-dark"><small>@<%= user.login %></small></a>
           </p><!-- end of user card -->
         </div><!-- end of user -->
       </div><!-- end of container -->

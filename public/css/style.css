@@ -42,15 +42,13 @@
 .topbar {
   line-height: 1.8;
   margin-bottom: 1.5rem;
-  background: rgba(255,255,255,1);
-  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
-  border-bottom: 1px solid #C9C9C9;
-  color: #333;
+  background-color: #00B16A;
+  color: #ffffff;
   overflow: auto;
 }
 .topbar a:link,
 .topbar a:visited {
-  color: #333;
+  color: #ffffff;
 }
 .logo {
   font-size: 1.5em;
@@ -71,8 +69,15 @@
   display: none;
   transition: all ease 0.8s;
 }
+.avatar-small {
+  border-radius: 50%;
+  border: 2px solid #1E824C;
+}
 .user-avatar {
   float: left;
+}
+.text-white {
+  color: #ffffff;
 }
 
 /** Desktop styles **/
@@ -80,10 +85,8 @@
   .topbar {
     line-height: 1.8;
     margin-bottom: 1.5rem;
-    background: rgba(255,255,255,1);
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
-    border-bottom: 1px solid #C9C9C9;
-    color: #333;
+    background-color: #00B16A;
+    color: #ffffff;
   }
   .logo {
     font-size: 2em;
