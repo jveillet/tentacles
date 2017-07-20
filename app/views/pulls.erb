@@ -23,6 +23,9 @@
         <div class="column">
           <h2>Pull requests</h2>
           <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged.</p>
+          <div class="back">
+            <a href="/repositories" class="link-green">&larr; Back to repositories</a>
+          </div><!-- end of back link -->
           <% if pull_request.nil? || pull_request.empty? %>
             <div class="blankslate">
               <h3>Nothing to show here.</h3>
@@ -32,7 +35,7 @@
           <% end %>
           <% pull_request.each do |pr| %>
           <% next if pr.nil? || pr.empty? %>
-          <div classs="pr-repo">
+          <div class="pr-repo">
             <div class="pr-repo__link">
               <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-green"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
               <span class="path-divider">/</span>
@@ -71,6 +74,11 @@
           </div><!-- end of repo -->
           <hr class="repo-separator">
         <% end %>
+          <% if pull_request && !pull_request.empty? %>
+          <div class="back">
+            <a href="/repositories" class="link-green">&larr; Back to repositories</a>
+          </div><!-- end of back link -->
+          <% end %>
         </div><!-- end of column -->
       </div><!-- end of columns -->
     </div><!-- end of container -->
@@ -87,5 +95,5 @@
         });
       });
     </script>
-  </body> 
+  </body>
 </html>
