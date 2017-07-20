@@ -1,6 +1,6 @@
 /**
 *
-*
+* Tentacles Stylesheet
 *
 */
 /** Home page **/
@@ -145,7 +145,11 @@
   border-bottom: .25em solid #e36209;
 }
 hr:last-child {
-  display: none;
+  display: none !important;
+}
+.back {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 @media all and (min-width: 47em) {
