@@ -34,9 +34,9 @@
           <% next if pr.nil? || pr.empty? %>
           <div classs="pr-repo">
             <div class="pr-repo__link">
-              <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
+              <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-green"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
               <span class="path-divider">/</span>
-              <a href="<%= pr[0][:head][:repo][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').last %></a>
+              <a href="<%= pr[0][:head][:repo][:html_url] %>" class="link-green"><%= pr[0][:head][:repo][:full_name].split('/').last %></a>
               <% if pr[0][:head][:repo][:private] %>
                 <span class="label label-private">Private</span>
               <% end %>
@@ -69,6 +69,7 @@
               <% end %>
             </div><!-- end of pr list -->
           </div><!-- end of repo -->
+          <hr class="repo-separator">
         <% end %>
         </div><!-- end of column -->
       </div><!-- end of columns -->

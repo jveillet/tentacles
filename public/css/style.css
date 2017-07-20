@@ -79,6 +79,9 @@
 .text-white {
   color: #ffffff;
 }
+.link-green {
+  color: #00B16A!important;
+}
 
 /** Desktop styles **/
 @media all and (min-width: 65em) {
@@ -141,6 +144,10 @@
 .repo-filter__item .selected {
   border-bottom: .25em solid #e36209;
 }
+hr:last-child {
+  display: none;
+}
+
 @media all and (min-width: 47em) {
   .repo-filter__list {
     display: flex;
@@ -155,9 +162,6 @@
   }
 }
 /** Pull requests **/
-.pr-repo__link {
-  margin-bottom: 1em;
-}
 .pr-repo__link a:link, a:visited {
   font-size: 1.5em;
 }
@@ -166,14 +170,15 @@
   padding-right: 1em;
 }
 .pr-item {
-  margin-bottom: 1.2em;
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
 .pr-title {
   font-size: 1.1em;
   font-weight: 600;
 }
 .pr-details {
-  font-size: 1em;
+  font-size: .9em;
 }
 .commit-ref {
   position: relative;

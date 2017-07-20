@@ -34,19 +34,19 @@
             <ul class="repo-filter__list">
               <% visibility = params[:visibility] || 'all' %>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=all" class="<%= 'selected' if visibility == 'all' %>">
+                <a href="/repositories?visibility=all" class="link-green <%= 'selected' if visibility == 'all' %>">
                   <span class="count"></span>
                   All
                 </a>
               </li>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=public" class="<%= 'selected' if visibility == 'public' %>">
+                <a href="/repositories?visibility=public" class="link-green <%= 'selected' if visibility == 'public' %>">
                   <span class="count"></span>
                   Public
                 </a>
               </li>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=private" class="<%= 'selected' if visibility == 'private' %>">
+                <a href="/repositories?visibility=private" class="link-green <%= 'selected' if visibility == 'private' %>">
                   <span class="count"></span>
                   Private
                 </a>
