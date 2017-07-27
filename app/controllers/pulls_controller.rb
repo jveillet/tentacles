@@ -26,7 +26,7 @@ module Controllers
       params[:repos].each do |repo|
         next unless repo && !repo.empty?
         issues = github_issues.find_issues_by_repo(repo, access_token: access_token)
-        next if issues.empty?
+        next if !issues || issues.empty?
         issues.each do |issue|
           issue[:labels] = github_issues.find_labels_by_issue(
             repo,
