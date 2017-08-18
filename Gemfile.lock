@@ -27,6 +27,7 @@ GEM
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
+    rake (12.0.0)
     redis (3.3.3)
     redis-rack (2.0.2)
       rack (>= 1.5, < 3)
@@ -60,16 +61,17 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dotenv
-  foreman
-  json
+  dotenv (~> 2.2.1)
+  foreman (~> 0.84.0)
+  json (~> 2.1.0)
   octokit (~> 4.0)
-  pry
-  puma
-  redis
+  pry (~> 0.10.4)
+  puma (~> 3.9.1)
+  rake (~> 12.0.0)
+  redis (~> 3.3.3)
   redis-rack
   rest-client (~> 1.6.3)
-  shotgun
+  shotgun (~> 0.9.2)
   sinatra (~> 2.0.0)
   sinatra-contrib (~> 2.0.0)
 

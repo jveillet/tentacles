@@ -1,4 +1,5 @@
 require 'dotenv'
+require 'rack'
 require 'rack/session/redis'
 
 ENV['SINATRA_ENV'] ||= 'development'
@@ -19,4 +20,4 @@ use Controllers::RepositoriesController
 use Controllers::PullsController
 use Rack::Deflater
 
-run ApplicationController
+run Controllers::ApplicationController
