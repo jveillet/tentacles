@@ -10,6 +10,10 @@ module Datasources
         connect(access_token)
       end
 
+      def response_success?
+        client.last_response.status == 200
+      end
+
       private
 
       def connect(access_token)

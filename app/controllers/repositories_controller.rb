@@ -1,6 +1,5 @@
 require './app/helpers/users'
 require './app/repositories/repositories'
-require 'sinatra/base'
 require_relative 'application_controller'
 
 module Controllers
