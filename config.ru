@@ -8,7 +8,10 @@ require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 
 use Rack::Session::Redis,
-    :redis_server => ENV.fetch('REDIS_URL').to_s
+    redis_server: "#{ENV.fetch('REDIS_URL')}/0/rack:session",
+    pool_size: 5,
+    pool_timeout: 15,
+    expire_after: 28_800 # 8h
 
 require './app/controllers/application_controller'
 require './app/controllers/authentication_controller'
