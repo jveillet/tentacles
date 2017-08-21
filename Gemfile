@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.4.0'
 
+gem 'connection_pool', '~> 2.2.1'
 gem 'dotenv', '~> 2.2.1'
 gem 'json', '~> 2.1.0'
 gem 'octokit', '~> 4.0'

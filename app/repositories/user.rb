@@ -8,7 +8,7 @@ module Repositories
   class User
     include Utils::Cache
 
-    USERS_CACHE = 7200
+    USERS_CACHE = 7200 # 2h
 
     def find_by_access_token(access_token)
       key = cache_key('user_by_access_token', access_token)
