@@ -60,16 +60,18 @@
             </label>
           </div>
           <form action="/pulls" method="post" class="repo-list">
+            <!-- <input type="text" class="search form-control input-lg" placeholder="Search repository name.."> -->
+            <input type="text" class="large-input search" placeholder="Search repository name..">
             <% repos.each do |repo| %>
             <% next if repo.nil? %>
             <div class="form-checkbox">
-              <label>
-                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="js-repo-item repo-list__item" data-private="<%= repo[:private] %>">
+              <label class="js-repo-item">
+                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="repo-list__item" data-private="<%= repo[:private] %>">
                 <%= repo[:full_name] %>
+                <% if repo[:private] %>
+                  <span class="label label-private">Private</span>
+                <% end %>
               </label>
-              <% if repo[:private] %>
-                <span class="label label-private">Private</span>
-              <% end %>
             </div><!--end of checkbox -->
             <% end %>
             <% if !repos.nil? && !repos.empty? %>
@@ -82,28 +84,6 @@
       </div><!-- end of columns -->
     </div><!-- end of container -->
     <script src="js/bliss.min.js"></script>
-    <script>
-      // Document is ready
-      $.ready().then(function() {
-        // Check/Uncheck all the repositories
-        selectAll = function() {
-          $$(".js-repo-item").map(function(element) {
-            if (!element.classList.contains("hide")) {
-              element.checked = !element.checked;
-            }
-            return element;
-          });
-          // Change the label text with the checkbox value
-          var labelNode = $(".filter__selectall");
-          var selectAllInput = $('[name="select_all"]');
-          if(selectAllInput.checked) {
-            labelNode.innerText = "Deselect all repositories"
-          } else {
-            labelNode.innerText = "Select all repositories"
-          }
-        };
-      });
-    </script>
+    <script src="js/scripts.js"></script>
   </body>
 </html>
-
