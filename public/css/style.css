@@ -222,6 +222,28 @@ hr:last-child {
   margin-top: .2em;
 }
 
+/* Search */
+
+input[type=text] {
+  border: 1px solid lightgrey;
+  display: block;
+  font-size: 100%;
+}
+
+.large-input {
+  height: 2.5em;
+  width: 90%;
+  padding: .5em;
+}
+
+.search {
+  background: url(../img/icon-search.png) no-repeat right center;
+  background: url(../img/icon-search.svg) no-repeat 98% center,
+  linear-gradient(transparent, transparent);
+  background-size: auto 20px;
+  padding-right: 2.5em;
+}
+
 /** Utilities **/
 .u-hide {
   display: none;
