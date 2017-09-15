@@ -1,8 +1,20 @@
-FROM heroku/heroku:16
+FROM heroku/heroku:16-build
 
 RUN apt-get clean && apt-get update -y \
-    && apt-get install -y --no-install-recommends git-core build-essential sudo libffi-dev libxml2-dev libssl-dev curl apt-utils\
+    && apt-get install -y --no-install-recommends git-core build-essential \
+       sudo libffi-dev libxml2-dev libssl-dev curl \
     && rm -rf /var/lib/apt/lists/*
+
+# Using Debian, as root
+# Force install latest version of Nodejs
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
+RUN apt-get install -y nodejs
+
+# install globally Gulp
+RUN /usr/bin/npm install -g gulp
+
+# Install bundler (it is not part of Heroku 16 image)
+RUN gem install bundler
 
 # Add wef user to sudo group
 RUN useradd -ms /bin/bash tentacles

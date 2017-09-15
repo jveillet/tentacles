@@ -1,0 +1,29 @@
+{
+  "name": "tentacles",
+  "version": "0.0.3",
+  "description": "All your Pull Requests, from all your repositories",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jveillet/tentacles.git"
+  },
+  "author": "Jérémie Veillet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jveillet/tentacles/issues"
+  },
+  "homepage": "https://github.com/jveillet/tentacles#readme",
+  "devDependencies": {
+    "postcss": "^6.0.11",
+    "autoprefixer": "^7.1.4",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-minify": "^1.0.0"
+  }
+}

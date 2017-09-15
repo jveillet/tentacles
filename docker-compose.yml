@@ -1,5 +1,5 @@
 bundler:
-  image: debian:jessie
+  image: heroku/heroku:16-build
   volumes:
     - /bundle
 
