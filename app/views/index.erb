@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="css/primer.min.css">
-    <% if ENV['SINATRA_ENV'] == 'production' %>
+    <% if ENV['APP_ENV'] == 'production' %>
     <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <% else %>
     <link rel="stylesheet" type="text/css" href="css/style.css">

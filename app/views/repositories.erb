@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="css/primer.min.css">
-    <% if ENV['SINATRA_ENV'] == 'production' %>
+    <% if ENV['APP_ENV'] == 'production' %>
     <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <% else %>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -88,7 +88,7 @@
       </div><!-- end of columns -->
     </div><!-- end of container -->
     <script src="js/bliss.min.js"></script>
-    <% if ENV['SINATRA_ENV'] == 'production' %>
+    <% if ENV['APP_ENV'] == 'production' %>
     <script src="js/scripts.min.js"></script>
     <% else %>
     <script src="js/scripts.js"></script>
