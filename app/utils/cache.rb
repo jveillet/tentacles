@@ -80,7 +80,7 @@ module Utils
       return nil if value.nil?
       binary = Zlib::Inflate.inflate(value)
       Marshal.load(binary)
-    rescue
+    rescue _
       nil
     end
 
