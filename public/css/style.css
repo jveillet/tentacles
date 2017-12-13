@@ -82,6 +82,9 @@
 .link-green {
   color: #00B16A!important;
 }
+.link-white {
+  color: #ffffff!important;
+}
 
 /** Desktop styles **/
 @media all and (min-width: 65em) {
@@ -166,6 +169,7 @@ hr:last-child {
   }
 }
 /** Pull requests **/
+
 .pr-repo__link a:link, a:visited {
   font-size: 1.5em;
 }
@@ -229,13 +233,11 @@ input[type=text] {
   display: block;
   font-size: 100%;
 }
-
 .large-input {
   height: 2.5em;
   width: 90%;
   padding: .5em;
 }
-
 .search {
   background: url(../img/icon-search.png) no-repeat right center;
   background: url(../img/icon-search.svg) no-repeat 98% center,
@@ -244,8 +246,28 @@ input[type=text] {
   padding-right: 2.5em;
 }
 
+/** 404 Page **/
+
+.error-container {
+  text-align: center;
+  margin: 0 auto;
+}
+.error-title {
+  font-size: 2.5em;
+}
+.error-description {
+  font-size: 1em;
+}
+
 /** Utilities **/
+
 .u-hide {
   display: none;
   transition: all ease 0.8s;
+}
+.u-green-bg {
+  background-color: #00B16A;
+}
+.u-white-color {
+  color: #ffffff;
 }

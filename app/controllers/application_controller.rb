@@ -18,5 +18,9 @@ module Controllers
     get '/' do
       erb :index, :locals => {:client_id => ENV['GH_CLIENT_ID'], :state => generate_state }
     end
+
+    not_found do
+      erb :error_404
+    end
   end
 end
