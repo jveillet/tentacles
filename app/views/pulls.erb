@@ -26,15 +26,15 @@
       <div class="columns">
         <div class="column">
           <h2>Pull requests</h2>
-          <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged.</p>
+          <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged</p>
           <div class="back">
             <a href="/repositories" class="link-green">&larr; Back to repositories</a>
           </div><!-- end of back link -->
           <% if pull_request.nil? || pull_request.empty? %>
             <div class="blankslate">
               <h3>Nothing to show here.</h3>
-              <p>There is no Pull Request pending for this repositories</p>
-              <p>Please go back to the <a href="/repositories" title="Repositories selection page">Repositories</a> selection.</p>
+              <p>There is no Pull Request pending for these repositories</p>
+              <p>Please go back to the <a href="/repositories" title="Repositories selection page">Repositories</a> selection</p>
             </div>
           <% end %>
           <% pull_request.each do |pr| %>
