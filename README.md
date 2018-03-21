@@ -1,5 +1,5 @@
 # Tentacles
-All the pull requests from your repositories (and the organizations you belong to) currated into a single web page.
+All the pull requests from your repositories (and the organizations you belong to) curated into a single web page.
 All the results are displayed in a Github fashion (like the Pulls tab), but separated by repo.
 
 _(Screencap coming later)_
@@ -19,7 +19,7 @@ GH_CLIENT_SECRET=<Your-Github-connected-app-client-secret>
 GH_CALLBACK_URL=<Your-Tentacles-OAuth-Callback-URL>
 ```
 
-## Installation (using docker)
+## Installation (using Docker)
 
 Clone the repository:
 ```bash
