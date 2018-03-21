@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/primer.min.css">
+    <% if ENV['APP_ENV'] == 'production' %>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <% else %>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <% end %>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container clearfix">
+        <a href="#" class="logo">Tentacles</a>
+        <div class="user">
+          <p class="user-card">
+            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="32" height="32">
+            <span class="user-fullname text-white"><%= user.name %></span><br>
+            <a href="<%= user.html_url %>" class="user-login link-gray-dark"><small>@<%= user.login %></small></a>
+          </p><!-- end of user card -->
+        </div><!-- end of user -->
+      </div><!-- end of container -->
+    </div><!-- end of topbar -->
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h2>Pull requests</h2>
+          <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged</p>
+          <div class="back">
+            <a href="/repositories" class="link-green">&larr; Back to repositories</a>
+          </div><!-- end of back link -->
+          <% if pull_request.nil? || pull_request.empty? %>
+            <div class="blankslate">
+              <h3>Nothing to show here.</h3>
+              <p>There is no Pull Request pending for these repositories</p>
+              <p>Please go back to the <a href="/repositories" title="Repositories selection page">repositories</a> selection</p>
+            </div>
+          <% end %>
+          <% pull_request.each do |pr| %>
+          <% next if pr.nil? || pr.empty? %>
+          <div class="pr-repo">
+            <div class="pr-repo__link">
+              <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-green"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
+              <span class="path-divider">/</span>
+              <a href="<%= pr[0][:head][:repo][:html_url] %>" class="link-green"><%= pr[0][:head][:repo][:full_name].split('/').last %></a>
+              <% if pr[0][:head][:repo][:private] %>
+                <span class="label label-private">Private</span>
+              <% end %>
+            </div>
+            <div class="pr-list">
+              <% pr.each do |req| %>
+                <% next if req.nil? || req.empty? %>
+                <div class="pr-item">
+                  <span class="pr-title"><a href="<%= req[:html_url] %>" class="link-gray-dark"><%= req[:title]%></a></span>
+                  <span class="labels">
+                  <% req[:labels].each do |label| %>
+                    <span class="label" style="background-color: #<%= label[:color]; %>;color: #fff"><%= label[:name] %></span>
+                  <% end %>
+                  </span><!-- end of labels -->
+                  <div class="pr-details">
+                    <span class="pr-details__commit text-gray">#<%= req[:number] %></span> opened <span class="pr-details__date"><%= req[:created_at] %></span>
+                    &nbsp;by&nbsp;<span class="pr-details__author"><%= req[:user][:login] %></span> into <span class="pr-details__branch css-truncate expandable commit-ref"><%= req[:base][:ref] %></span>
+                    &nbsp;from&nbsp;<span class="css-truncate expandable commit-ref"><%= req[:head][:ref] %></span>
+                  </div><!-- end of pr details -->
+                  <% if req[:comments_count].to_i > 0 %>
+                  <div class="pr-details">
+                     <object type="image/svg+xml" data="img/icon-comment.svg" class="icon-comment" width="16" heigh="16">
+                      <!-- fallback image -->
+                      <img src="img/icon-comment.png" alt="comments" width="16" heigh="16">
+                    </object>
+                    <%= req[:comments_count] %> comment<%= 's' if req[:comments_count].to_i > 1 %>
+                  </div><!-- end of pr details -->
+                  <% end %>
+                </div><!-- end of pr item -->
+              <% end %>
+            </div><!-- end of pr list -->
+          </div><!-- end of repo -->
+          <hr class="repo-separator">
+        <% end %>
+          <% if pull_request && !pull_request.empty? %>
+          <div class="back">
+            <a href="/repositories" class="link-green">&larr; Back to repositories</a>
+          </div><!-- end of back link -->
+          <% end %>
+        </div><!-- end of column -->
+      </div><!-- end of columns -->
+    </div><!-- end of container -->
+    <script src="js/bliss.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script>
+      // Document is ready
+      $.ready().then(function() {
+        // Loop over the dates to print a more friendly date like "1 day ago"
+        var dates = $$(".pr-details__date").map(function(element) {
+          var momentDate = moment(element.innerText).fromNow();
+          element.innerHTML = momentDate;
+          return element.innerHTML;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/primer.min.css">
+    <% if ENV['APP_ENV'] == 'production' %>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <% else %>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <% end %>
+  </head>
+  <body class="session-authentication">
+    <div class="container">
+      <div class="columns">
+        <div class="session one-half column centered">
+          <div class="session-header">
+            <h1>Connect to Tentacles</h1>
+          </div>
+          <div class="session-form">
+            <p class="lead">Tentacles is an app to aggregate all your Pull Requests from different repositories into a single interface.</p>
+            <p>Start by connecting with your <a href="https://github.com">Github</a> account</p>
+            <p><a class="btn" href="https://github.com/login/oauth/authorize?scope=user,repo&client_id=<%= client_id %>&state=<%= state %>&allow_signup=false">Connect with Github</a></p>
+          </div>
+        </div><!-- end of column -->
+      </div><!-- end of columns -->
+    </div><!-- end of container -->
+  </body>
+</html>
