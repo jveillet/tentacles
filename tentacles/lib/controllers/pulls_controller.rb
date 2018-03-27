@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'helpers/users'
 require 'repositories/issues'
 require_relative 'application_controller'
@@ -23,7 +25,9 @@ module Controllers
 
       params[:repos].each do |repo|
         next unless repo && !repo.empty?
-        issues = github_issues.find_issues_by_repo(repo, access_token: access_token)
+        issues = github_issues.find_issues_by_repo(
+          repo, access_token: access_token
+        )
         next if !issues || issues.empty?
         issues.each do |issue|
           issue[:labels] = github_issues.find_labels_by_issue(
@@ -40,8 +44,10 @@ module Controllers
         end
         pull_requests << issues
       end
-
-      erb :pulls, :locals => { :pull_request => pull_requests, :user => current_user }
+      puts '*******************'
+      puts pull_requests[0][0][:head][:repo][:name]
+      puts '*******************'
+      erb :pulls, locals: { pull_request: pull_requests, user: current_user }
     end
   end
 end

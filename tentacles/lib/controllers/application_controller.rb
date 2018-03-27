@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'helpers/state'
 require 'sinatra/base'
 
@@ -16,7 +18,9 @@ module Controllers
     helpers Helpers::State
 
     get '/' do
-      erb :index, :locals => {:client_id => ENV['GH_CLIENT_ID'], :state => generate_state }
+      erb :index, locals: {
+        client_id: ENV['GH_CLIENT_ID'], state: generate_state
+      }
     end
 
     not_found do
