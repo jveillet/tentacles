@@ -44,10 +44,34 @@ module Controllers
         end
         pull_requests << issues
       end
-      puts '*******************'
-      puts pull_requests[0][0][:head][:repo][:name]
-      puts '*******************'
-      erb :pulls, locals: { pull_request: pull_requests, user: current_user }
+
+      first_cursor = 0
+      final_hash = {}
+
+      until first_cursor == pull_requests.length
+        second_cursor = 0
+
+        until second_cursor == pull_requests[first_cursor].length
+          repo_name = pull_requests[first_cursor][second_cursor]
+                      .to_h.dig(:head, :repo, :name)
+
+          if final_hash.key?(repo_name)
+            final_hash [repo_name] += 1
+          else
+            final_hash [repo_name] = 1
+          end
+          second_cursor += 1
+        end
+        first_cursor += 1
+      end
+
+      puts final_hash
+
+      erb :pulls, locals: {
+        pull_request: pull_requests,
+        user: current_user,
+        pull_requests_per_repo: final_hash
+      }
     end
   end
 end

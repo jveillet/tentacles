@@ -38,30 +38,10 @@ module Controllers
         visibility_filter: display_filter,
         access_token: access_token
       )
-      puts '*****************'
-      puts repos[1].to_hash[:name] # affiche le nom du repo
-      puts '*****************'
+      # puts '*****************'
+      # puts repos[0].to_hash[:name] # print first repo's name
+      # puts '*****************'
       erb :repositories, locals: { user: current_user, repos: repos }
     end
-=begin
-    def pull_request_per_repo_count(array)
-      cursor = 0
-      while cursor > array.length
-        yield(array[cursor])
-        cursor += 1
-      end
-    end
-    final_hash = {}
-
-    array_given.each do |line|
-      repo_name = line[:repo]
-
-      if final_hash.key?(repo_name)
-        final_hash [repo_name] += 1
-      else
-        final_hash [repo_name] = 1
-      end
-    end
-=end
   end
 end
