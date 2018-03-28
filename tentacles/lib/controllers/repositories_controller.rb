@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'helpers/users'
 require 'repositories/repositories'
 require_relative 'application_controller'
@@ -36,8 +38,10 @@ module Controllers
         visibility_filter: display_filter,
         access_token: access_token
       )
-
-      erb :repositories, :locals => { :user => current_user, :repos => repos }
+      # puts '*****************'
+      # puts repos[0].to_hash[:name] # print first repo's name
+      # puts '*****************'
+      erb :repositories, locals: { user: current_user, repos: repos }
     end
   end
 end

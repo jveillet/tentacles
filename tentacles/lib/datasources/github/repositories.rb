@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'connection'
 require_relative 'pagination'
 
@@ -15,8 +17,8 @@ module Datasources
         github = client(access_token)
         records = github.repositories(
           nil,
-          :visibility => filter,
-          :per_page => per_page
+          visibility: filter,
+          per_page: per_page
         )
         return [] unless records
         pagination = Pagination.new(records)

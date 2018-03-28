@@ -17,3 +17,13 @@ web:
   volumes_from:
     - bundler
   command: bundle exec foreman start web
+
+shotgun:
+    build: .
+    ports:
+      - "4012:3000"
+    volumes:
+      - .:/tentacles/
+    volumes_from:
+      - bundler
+    command: bundle exec shotgun -o 0.0.0.0

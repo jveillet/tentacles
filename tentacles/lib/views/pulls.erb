@@ -26,6 +26,9 @@
       <div class="columns">
         <div class="column">
           <h2>Pull requests</h2>
+          <% pull_requests_per_repo.each do |repo_name| %>
+          <p><%= repo_name %></p>
+          <% end %>
           <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged</p>
           <div class="back">
             <a href="/repositories" class="link-green">&larr; Back to repositories</a>
