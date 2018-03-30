@@ -42,7 +42,7 @@
 .topbar {
   line-height: 1.8;
   margin-bottom: 1.5rem;
-  background-color: #00B16A;
+  background-color: #588B8B;
   color: #ffffff;
   overflow: auto;
 }
@@ -80,7 +80,7 @@
   color: #ffffff;
 }
 .link-green {
-  color: #00B16A!important;
+  color: #588B8B!important;
 }
 .link-white {
   color: #ffffff!important;
@@ -91,7 +91,7 @@
   .topbar {
     line-height: 1.8;
     margin-bottom: 1.5rem;
-    background-color: #00B16A;
+    background-color: #588B8B;
     color: #ffffff;
   }
   .logo {
@@ -212,9 +212,9 @@ hr:last-child {
   box-shadow: inset 0 -1px 0 rgba(0,0,0,0.12);
 }
 .label-private {
-    font-weight: normal;
-    color: #4c4a42;
-    background-color: #ffefc6;
+  font-weight: normal;
+  color: #4c4a42;
+  background-color: #ffefc6;
 }
 .path-divider {
   margin: 0 0.25em;
@@ -270,4 +270,42 @@ input[type=text] {
 }
 .u-white-color {
   color: #ffffff;
+}
+
+/** Dashboard **/
+
+.dashboard {
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #E8E8E8;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  /** justify-content: space-between; **/
+}
+
+.db-repo {
+  font-size: 0.5em;
+  color: #4E4E4E;
+  display: flex;
+}
+
+.db-pr-low {
+  background-color: #008148;
+  padding: 0.4em 0.9em;
+  border-style: outset;
+}
+
+.db-pr-medium {
+  background-color: #F76A19;
+  padding: 0.4em 0.9em;
+  border-style: outset;
+}
+
+.db-pr-high {
+  background-color: #9A031E;
+}
+
+.db-pr-critical {
+  background-color: #0C120C;
 }

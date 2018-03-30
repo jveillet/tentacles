@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="css/primer.min.css">
@@ -23,19 +24,31 @@
       </div><!-- end of container -->
     </div><!-- end of topbar -->
     <div class="container">
+      <div class="dashboard">
+        <% pull_requests_per_repo.each do |repo_name, pull_requests_count| %>
+        <% if pull_requests_count <= 1 %>
+        <p class="db-pr-low"><%= pull_requests_count %></p>
+        <% elsif pull_requests_count == 2 %>
+        <p class="db-pr-medium"><%= pull_requests_count %></p>
+        <% elsif pull_requests_count == 3 %>
+        <p class="db-pr-high"><%= pull_requests_count %></p>
+        <% else %>
+        <p class="db-pr-critical"><%= pull_requests_count %></p>
+        <% end %>
+        <p class="db-repo"><%= repo_name %></p>
+        <% end %>
+      </div>
+      <!-- end of dashboard -->
       <div class="columns">
         <div class="column">
           <h2>Pull requests</h2>
-          <% pull_requests_per_repo.each do |repo_name| %>
-          <p><%= repo_name %></p>
-          <% end %>
           <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged</p>
           <div class="back">
             <a href="/repositories" class="link-green">&larr; Back to repositories</a>
           </div><!-- end of back link -->
           <% if pull_request.nil? || pull_request.empty? %>
             <div class="blankslate">
-              <h3>Nothing to show here.</h3>
+              <h3>Nothing to show here</h3>
               <p>There is no Pull Request pending for these repositories</p>
               <p>Please go back to the <a href="/repositories" title="Repositories selection page">repositories</a> selection</p>
             </div>
