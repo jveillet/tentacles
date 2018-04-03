@@ -24,21 +24,44 @@
       </div><!-- end of container -->
     </div><!-- end of topbar -->
     <div class="container">
+      <br>
       <div class="dashboard">
         <% pull_requests_per_repo.each do |repo_name, pull_requests_count| %>
-        <% if pull_requests_count <= 1 %>
-        <p class="db-pr-low"><%= pull_requests_count %></p>
-        <% elsif pull_requests_count == 2 %>
-        <p class="db-pr-medium"><%= pull_requests_count %></p>
-        <% elsif pull_requests_count == 3 %>
-        <p class="db-pr-high"><%= pull_requests_count %></p>
-        <% else %>
-        <p class="db-pr-critical"><%= pull_requests_count %></p>
+        <table>
+        <thead>
+          <tr>
+            <td>
+              <% if pull_requests_count == 1 %>
+              <p class="db-pr-low"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% elsif pull_requests_count <= 3 %>
+              <p class="db-pr-medium"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% elsif pull_requests_count <= 5 %>
+              <p class="db-pr-high"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% else %>
+              <p class="db-pr-critical"><%= pull_requests_count %></p>
+            </td>
+              <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+            <p class="db-repo"><%= repo_name %></p>
+          </td>
+          </tr>
+        </tbody>
         <% end %>
-        <p class="db-repo"><%= repo_name %></p>
-        <% end %>
+        </table>
       </div>
       <!-- end of dashboard -->
+      <br>
+      <br>
       <div class="columns">
         <div class="column">
           <h2>Pull requests</h2>

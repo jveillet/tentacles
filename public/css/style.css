@@ -275,37 +275,53 @@ input[type=text] {
 /** Dashboard **/
 
 .dashboard {
-  font-size: 3.5em;
+  font-size: 5.5vw;
   font-weight: bold;
   color: #E8E8E8;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  /** justify-content: space-between; **/
-}
-
-.db-repo {
-  font-size: 0.5em;
-  color: #4E4E4E;
-  display: flex;
+  justify-content: space-around;
 }
 
 .db-pr-low {
   background-color: #008148;
-  padding: 0.4em 0.9em;
-  border-style: outset;
+  box-shadow: 0.1em 0.1em 0.05em grey;
+  position: relative;
+  text-align: center;
+  width: 9vw;
+  height: 9vw;
 }
 
 .db-pr-medium {
   background-color: #F76A19;
-  padding: 0.4em 0.9em;
-  border-style: outset;
+  box-shadow: 0.1em 0.1em 0.05em grey;
+  position: relative;
+  text-align: center;
+  width: 9vw;
+  height: 9vw;
 }
 
 .db-pr-high {
   background-color: #9A031E;
+  box-shadow: 0.1em 0.1em 0.05em grey;
+  position: relative;
+  text-align: center;
+  width: 9vw;
+  height: 9vw;
 }
 
 .db-pr-critical {
   background-color: #0C120C;
+  box-shadow: 0.1em 0.1em 0.05em grey;
+  position: relative;
+  text-align: center;
+  width: 9vw;
+  height: 9vw;
+}
+
+.db-repo {
+  font-size: 2.5vw;
+  color: #4E4E4E;
+  text-align: center;
 }
