@@ -1,6 +1,9 @@
 // Document is ready
 $.ready().then(function() {
-  // Check/Uncheck all the repositories
+
+  /*
+   * Check/Uncheck all the repositories
+   */
   selectAll = function() {
     var selectAllInput = $('[name="select_all"]');
     $$(".repo-list__item").map(function(element) {
@@ -14,9 +17,9 @@ $.ready().then(function() {
     updateSelectAllLabel();
   }
 
-  /**
+  /*
    * Update the select all label with the status
-   * of the checkbox (true/fale).
+   * of the checkbox (true/false).
   */
   updateSelectAllLabel = function() {
     // Change the label text with the checkbox value
@@ -29,7 +32,7 @@ $.ready().then(function() {
     }
   }
 
-  /**
+  /*
    * Count the total numbers of repositories.
    *
    * @return [Integer] The number of repositories.
@@ -38,7 +41,7 @@ $.ready().then(function() {
     return $$(".repo-list__item").length;
   }
 
-  /**
+  /*
    * Count the numbers of selected repositories.
    *
    * @return [Integer] The number of checked repositories.
@@ -53,7 +56,7 @@ $.ready().then(function() {
     return number;
   }
 
-  /**
+  /*
    * Check if all the repositories displayed are ckecked.
    * When they are all checked, also check the "Select All"
    * checkbox and update its label.
@@ -90,7 +93,7 @@ $.ready().then(function() {
        }
      });
    }
-   /**
+   /*
     * Checks if the search term exists or is empty.
     * @param searchedValue [String] The value from the search field.
     * @return [Boolean] True if the search field is empty.
@@ -119,7 +122,7 @@ $.ready().then(function() {
      }
    });
 
-  /**
+  /*
    * Event registration on the repositories checkboxes.
    */
    $$(".repo-list__item")._.events({
@@ -127,4 +130,22 @@ $.ready().then(function() {
        lazyCheckAll();
      }
    });
+
+   /*
+    * Check if some checkboxes are checked.
+    * Change the display of a sentence (none/block).
+    * @return [Boolean] True if at least one checkbox is checked.
+    */
+    checkCheckboxes = function() {
+      var allCheckboxes = document.getElementById("checkboxes");
+      var uncheckedText = document.getElementById("uncheckedMessage");
+      if (allCheckboxes.checked == false){
+        uncheckedText.style.display = "block";
+        return false;
+      } else {
+        uncheckedText.style.display = "none";
+        document.forms["repoForm"].submit();
+        return true;
+      }
+    }
 });

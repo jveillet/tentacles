@@ -3,24 +3,23 @@
 * Tentacles Stylesheet
 *
 */
+
 /** Home page **/
 .session-authentication {
-    background-color: #f9f9f9;
+  background-color: #588B8B;
 }
 .session {
   margin-top: 2.2em;
 }
 .session-form {
-    padding: 20px;
-    font-size: 14px;
+    padding: 2em;
+    font-size: 1em;
     background-color: #fff;
-    border: 1px solid #d8dee2;
-    border-top: 0;
-    border-radius: 0 0 3px 3px;
+    border: 0.1em solid #d8dee2;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
 }
 .session-header {
     margin-bottom: 1em;
-    color: #333;
     text-align: center;
     text-shadow: none;
     background-color: transparent;
@@ -29,11 +28,17 @@
 .session-header h1 {
     font-size: 2em;
     font-weight: 300;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.01em;
+    color: #ffffff;
 }
+
+.lead {
+  color: #416666;
+}
+
 /** General Repositories **/
 
-/* Mobile first styles */
+/** Mobile first styles **/
 .container {
   width: auto;
   padding-right: .5em;
@@ -71,7 +76,7 @@
 }
 .avatar-small {
   border-radius: 50%;
-  border: 2px solid #1E824C;
+  border: 0.2em solid #416666;
 }
 .user-avatar {
   float: left;
@@ -79,7 +84,7 @@
 .text-white {
   color: #ffffff;
 }
-.link-green {
+.link-blue {
   color: #588B8B!important;
 }
 .link-white {
@@ -168,6 +173,16 @@ hr:last-child {
     margin-right: 0;
   }
 }
+
+.repo-error {
+  margin: 1em;
+  padding: 1em;
+  color: #BA5108;
+  font-weight: bold;
+  background-color: #F9E2D2;
+  border-radius: 0.5em;
+}
+
 /** Pull requests **/
 
 .pr-repo__link a:link, a:visited {
@@ -226,7 +241,7 @@ hr:last-child {
   margin-top: .2em;
 }
 
-/* Search */
+/** Search **/
 
 input[type=text] {
   border: 1px solid lightgrey;
@@ -266,7 +281,7 @@ input[type=text] {
   transition: all ease 0.8s;
 }
 .u-green-bg {
-  background-color: #00B16A;
+  background-color: #588B8B;
 }
 .u-white-color {
   color: #ffffff;
@@ -277,51 +292,38 @@ input[type=text] {
 .dashboard {
   font-size: 5.5vw;
   font-weight: bold;
-  color: #E8E8E8;
+  color: #FFFFFF;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   justify-content: space-around;
 }
 
-.db-pr-low {
-  background-color: #008148;
+.db-pullrequest {
   box-shadow: 0.1em 0.1em 0.05em grey;
   position: relative;
   text-align: center;
   width: 9vw;
   height: 9vw;
+}
+
+.db-pr-low {
+  background-color: #008148;
 }
 
 .db-pr-medium {
   background-color: #F76A19;
-  box-shadow: 0.1em 0.1em 0.05em grey;
-  position: relative;
-  text-align: center;
-  width: 9vw;
-  height: 9vw;
 }
 
 .db-pr-high {
   background-color: #9A031E;
-  box-shadow: 0.1em 0.1em 0.05em grey;
-  position: relative;
-  text-align: center;
-  width: 9vw;
-  height: 9vw;
 }
 
 .db-pr-critical {
   background-color: #0C120C;
-  box-shadow: 0.1em 0.1em 0.05em grey;
-  position: relative;
-  text-align: center;
-  width: 9vw;
-  height: 9vw;
 }
 
 .db-repo {
   font-size: 2.5vw;
   color: #4E4E4E;
-  text-align: center;
 }

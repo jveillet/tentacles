@@ -15,7 +15,7 @@
         <a href="#" class="logo">Tentacles</a>
         <div class="user">
           <p class="user-card">
-            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="32" height="32">
+            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="40" height="40">
             <span class="user-fullname text-white"><%= user.name %></span><br>
             <a href="<%= user.html_url %>" class="user-login link-gray-dark"><small>@<%= user.login %></small></a>
           </p><!-- end of user card -->
@@ -38,19 +38,19 @@
             <ul class="repo-filter__list">
               <% visibility = params[:visibility] || 'all' %>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=all" class="link-green <%= 'selected' if visibility == 'all' %>">
+                <a href="/repositories?visibility=all" class="link-blue <%= 'selected' if visibility == 'all' %>">
                   <span class="count"></span>
                   All
                 </a>
               </li>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=public" class="link-green <%= 'selected' if visibility == 'public' %>">
+                <a href="/repositories?visibility=public" class="link-blue <%= 'selected' if visibility == 'public' %>">
                   <span class="count"></span>
                   Public
                 </a>
               </li>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=private" class="link-green <%= 'selected' if visibility == 'private' %>">
+                <a href="/repositories?visibility=private" class="link-blue <%= 'selected' if visibility == 'private' %>">
                   <span class="count"></span>
                   Private
                 </a>
@@ -63,14 +63,14 @@
               <em class="highlight filter__selectall">Select all repositories</em>
             </label>
           </div>
-          <form action="/pulls" method="post" class="repo-list">
+          <form id="repoForm" action="/pulls" method="post" class="repo-list">
             <!-- <input type="text" class="search form-control input-lg" placeholder="Search repository name.."> -->
-            <input type="text" class="large-input search" placeholder="Search repository name..">
+            <input type="text" class="large-input search" placeholder="Search repository name...">
             <% repos.each do |repo| %>
             <% next if repo.nil? %>
             <div class="form-checkbox">
               <label class="js-repo-item">
-                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="repo-list__item" data-private="<%= repo[:private] %>">
+                <input type="checkbox" id="checkboxes" name="repos[]" value="<%= repo[:full_name] %>" class="repo-list__item" data-private="<%= repo[:private] %>">
                 <%= repo[:full_name] %>
                 <% if repo[:private] %>
                   <span class="label label-private">Private</span>
@@ -80,7 +80,8 @@
             <% end %>
             <% if !repos.nil? && !repos.empty? %>
             <div class="repo-actions">
-              <button type="submit" class="btn btn-primary">Show Pull Requests</button>
+              <button type="button" class="btn btn-success" onClick="javascript:checkCheckboxes()">Show Pull Requests</button>
+              <p id="uncheckedMessage" style="display:none" class="repo-error">Please select at least one repository</p>
               <%= puts repos %>
             </div><!-- end of actions -->
             <% end %>
