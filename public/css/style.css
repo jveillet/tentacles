@@ -56,7 +56,7 @@
   color: #ffffff;
 }
 .logo {
-  font-size: 1.5em;
+  font-size: 3em;
 }
 .user {
   float: right;
@@ -123,6 +123,9 @@
 }
 
 /** Repositories **/
+.select {
+  font-size: 1.1em;
+}
 .lead-align {
   padding-left: .625em;
   padding-right: .625em;

@@ -93,6 +93,7 @@ $.ready().then(function() {
        }
      });
    }
+
    /*
     * Checks if the search term exists or is empty.
     * @param searchedValue [String] The value from the search field.
@@ -104,6 +105,7 @@ $.ready().then(function() {
      }
      return false;
    }
+
    /*
     * Remove the display filter for repositories.
     */

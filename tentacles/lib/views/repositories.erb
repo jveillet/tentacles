@@ -60,14 +60,13 @@
           <div class="form-checkbox">
             <label>
               <input type="checkbox" name="select_all" onClick="javascript:selectAll();">
-              <em class="highlight filter__selectall">Select all repositories</em>
+              <em class="select filter__selectall">Select all repositories</em>
             </label>
           </div>
           <form id="repoForm" action="/pulls" method="post" class="repo-list">
-            <!-- <input type="text" class="search form-control input-lg" placeholder="Search repository name.."> -->
-            <input type="text" class="large-input search" placeholder="Search repository name...">
+            <input type="text" class="large-input search" placeholder="Search repository name..." onKeyPress="if (event.which == 13) return false;">
             <% repos.each do |repo| %>
-            <% next if repo.nil? %>
+            <% next unless repo %>
             <div class="form-checkbox">
               <label class="js-repo-item">
                 <input type="checkbox" id="checkboxes" name="repos[]" value="<%= repo[:full_name] %>" class="repo-list__item" data-private="<%= repo[:private] %>">
