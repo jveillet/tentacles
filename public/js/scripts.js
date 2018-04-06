@@ -20,7 +20,7 @@ $.ready().then(function() {
   /*
    * Update the select all label with the status
    * of the checkbox (true/false).
-  */
+   */
   updateSelectAllLabel = function() {
     // Change the label text with the checkbox value
     var labelNode = $(".filter__selectall");
@@ -57,7 +57,7 @@ $.ready().then(function() {
   }
 
   /*
-   * Check if all the repositories displayed are ckecked.
+   * Check if all the repositories displayed are checked.
    * When they are all checked, also check the "Select All"
    * checkbox and update its label.
    */
@@ -71,12 +71,11 @@ $.ready().then(function() {
     updateSelectAllLabel();
   }
 
- /*
-  * Filter repositories on the page based on names.
-  *
-  * This function hides elements that do not match
-  * a search term.
-  */
+  /*
+   * Filter repositories on the page based on names.
+   * This function hides elements that do not match
+   * a search term.
+   */
   filter = function() {
     var searchedElement = $(".search");
     var searchedValue = searchedElement.value;
@@ -85,69 +84,95 @@ $.ready().then(function() {
       return;
     }
     $$(".js-repo-item").map(function(element) {
-       element.classList.add("u-hide");
-       var item = element.innerText;
-       var result = item.match(searchedValue);
-       if (result != null) {
-         element.classList.remove("u-hide");
-       }
-     });
-   }
+      element.classList.add("u-hide");
+      var item = element.innerText;
+      var result = item.match(searchedValue);
+      if (result != null) {
+        element.classList.remove("u-hide");
+      }
+    });
+  }
 
-   /*
-    * Checks if the search term exists or is empty.
-    * @param searchedValue [String] The value from the search field.
-    * @return [Boolean] True if the search field is empty.
-    */
-    isFilterEmpty = function(searchedValue) {
-     if (!searchedValue || searchedValue == "") {
-       return true;
-     }
-     return false;
-   }
+  /*
+   * Checks if the search term exists or is empty.
+   * @param searchedValue [String] The value from the search field.
+   * @return [Boolean] True if the search field is empty.
+   */
+  isFilterEmpty = function(searchedValue) {
+    if (!searchedValue || searchedValue == "") {
+      return true;
+    }
+    return false;
+  }
 
-   /*
-    * Remove the display filter for repositories.
-    */
-    removeFilter = function() {
-     $$(".js-repo-item").map(function(element) {
-       element.classList.remove("u-hide");
-     });
-   }
+  /*
+   * Remove the display filter for repositories.
+   */
+  removeFilter = function() {
+    $$(".js-repo-item").map(function(element) {
+      element.classList.remove("u-hide");
+    });
+  }
 
   /*
    * Event registration on the search field.
    */
-   $$('input[type="text"]')._.events({
-     "input change": function(evt) {
-       filter();
-     }
-   });
+  $$('input[type="text"]')._.events({
+    "input change": function(evt) {
+      filter();
+    }
+  });
 
   /*
    * Event registration on the repositories checkboxes.
    */
-   $$(".repo-list__item")._.events({
-     "input change checked": function(evt) {
-       lazyCheckAll();
-     }
-   });
+  $$(".repo-list__item")._.events({
+    "input change checked": function(evt) {
+      lazyCheckAll();
+    }
+  });
 
-   /*
-    * Check if some checkboxes are checked.
-    * Change the display of a sentence (none/block).
-    * @return [Boolean] True if at least one checkbox is checked.
-    */
-    checkCheckboxes = function() {
-      var allCheckboxes = document.getElementById("checkboxes");
-      var uncheckedText = document.getElementById("uncheckedMessage");
-      if (allCheckboxes.checked == false){
-        uncheckedText.style.display = "block";
-        return false;
-      } else {
-        uncheckedText.style.display = "none";
-        document.forms["repoForm"].submit();
-        return true;
+  /*
+   * Verify if some repository is selected.
+   */
+  validateRepoSelection = function() {
+    checkCheckboxes();
+    if (checked == false){
+      displayNoRepoSelectedWarning();
+    } else {
+      submitRepoForm();
+    }
+  }
+
+  /*
+   * Check if at least one checkbox is checked.
+   * @return [Boolean] checked.
+   */
+  checkCheckboxes = function() {
+    var checkboxes = document.getElementsByClassName("isRepoCheckBox");
+    checked = false;
+    numberOfRepo = repositoriesCount();
+    for (cursor = 0; cursor < numberOfRepo; cursor++){
+      if (checkboxes[cursor].checked == true) {
+        checked = true;
+        break;
       }
     }
+    return checked;
+  }
+
+  /*
+   * Change the display of a sentence to 'block'.
+   */
+  displayNoRepoSelectedWarning = function(){
+    var uncheckedText = document.getElementById("uncheckedMessage");
+    uncheckedText.style.display = "block";
+  }
+
+  /*
+   * Submit the form.
+   */
+  submitRepoForm = function(){
+    document.forms["repoForm"].submit();
+  }
 });
