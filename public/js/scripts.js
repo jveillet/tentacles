@@ -133,14 +133,28 @@ $.ready().then(function() {
   });
 
   /*
-   * Verify if some repository is selected.
+   * Verify if some repository is selected
+   * Submit the form and move on /pulls.
    */
-  validateRepoSelection = function() {
-    checkCheckboxes();
-    if (checked == false){
+  validateRepoSelectionPulls = function() {
+    if (checkRepoCheckboxes() == false) {
       displayNoRepoSelectedWarning();
     } else {
-      submitRepoForm();
+      document.forms["repoForm"].action="/pulls";
+      document.forms["repoForm"].submit();
+    }
+  }
+
+  /*
+   * Verify if some repository is selected.
+   * Submit the form and and move on /stats.
+   */
+  validateRepoSelectionStats = function() {
+    if (checkRepoCheckboxes() == false) {
+      displayNoRepoSelectedWarning();
+    } else {
+      document.forms["repoForm"].action="/stats";
+      document.forms["repoForm"].submit();
     }
   }
 
@@ -148,11 +162,11 @@ $.ready().then(function() {
    * Check if at least one checkbox is checked.
    * @return [Boolean] checked.
    */
-  checkCheckboxes = function() {
+  checkRepoCheckboxes = function() {
     var checkboxes = document.getElementsByClassName("isRepoCheckBox");
-    checked = false;
+    var checked = false;
     numberOfRepo = repositoriesCount();
-    for (cursor = 0; cursor < numberOfRepo; cursor++){
+    for (cursor = 0; cursor < numberOfRepo; cursor++) {
       if (checkboxes[cursor].checked == true) {
         checked = true;
         break;
@@ -162,17 +176,11 @@ $.ready().then(function() {
   }
 
   /*
-   * Change the display of a sentence to 'block'.
+   * Post up an error message if no checkbox is checked.
    */
-  displayNoRepoSelectedWarning = function(){
+  displayNoRepoSelectedWarning = function() {
     var uncheckedText = document.getElementById("uncheckedMessage");
     uncheckedText.style.display = "block";
   }
 
-  /*
-   * Submit the form.
-   */
-  submitRepoForm = function(){
-    document.forms["repoForm"].submit();
-  }
 });

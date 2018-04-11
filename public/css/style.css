@@ -184,6 +184,20 @@ hr:last-child {
   font-weight: bold;
   background-color: #F9E2D2;
   border-radius: 0.5em;
+  -webkit-animation: fadeinout 1s linear 1 forwards;
+  animation: fadeinout 6s linear 1 forwards;
+}
+
+@-webkit-keyframes fadeinout {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /** Pull requests **/

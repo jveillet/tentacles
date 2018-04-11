@@ -8,7 +8,7 @@ module Controllers
   ##
   # Class Pull requests
   #
-  class PullsController < ApplicationController
+  class StatsController < ApplicationController
     helpers Helpers::Users
     helpers do
       def github_issues
@@ -20,12 +20,19 @@ module Controllers
       logout unless current_user
     end
 
-    post '/pulls' do
+    def seconds_to_units(seconds)
+      mm, ss = seconds.divmod(60)
+      hh, mm = mm.divmod(60)
+      dd, hh = hh.divmod(24)
+      puts '%d days, %d hours, %d minutes and %d seconds' % [dd, hh, mm, ss]
+    end
+
+    post '/stats' do
       pull_requests_groups = []
 
       params[:repos].each do |repo|
         next unless repo && !repo.empty?
-        issues = github_issues.find_issues_by_repo(
+        issues = github_issues.find_closed_issues_by_repo(
           repo, access_token: access_token
         )
         next if !issues || issues.empty?
@@ -45,24 +52,23 @@ module Controllers
         pull_requests_groups << issues
       end
 
-      final_hash = {}
-
       pull_requests_groups.each do |pull_requests|
+        pull_request_number = 0
+        lifetime_sum = 0
         pull_requests.each do |pull_request|
-          repo_name = pull_request.to_h.dig(:head, :repo, :name)
-
-          if final_hash.key?(repo_name)
-            final_hash [repo_name] += 1
-          else
-            final_hash [repo_name] = 1
-          end
+          creation_date = pull_request.to_h.dig(:created_at)
+          closure_date = pull_request.to_h.dig(:closed_at)
+          lifetime_pullrequest = closure_date - creation_date
+          lifetime_sum += lifetime_pullrequest
+          pull_request_number += 1
         end
+        average_lifetime = lifetime_sum / pull_request_number
+        average_per_repo = seconds_to_units(average_lifetime)
       end
-
-      erb :pulls, locals: {
+      erb :stats, locals: {
         pull_request: pull_requests_groups,
         user: current_user,
-        pull_requests_per_repo: final_hash
+        average: average_per_repo
       }
     end
   end

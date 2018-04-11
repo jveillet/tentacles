@@ -23,10 +23,12 @@ require 'controllers/application_controller'
 require 'controllers/authentication_controller'
 require 'controllers/repositories_controller'
 require 'controllers/pulls_controller'
+require 'controllers/stats_controller'
 
 use Controllers::AuthenticationController
 use Controllers::RepositoriesController
 use Controllers::PullsController
+use Controllers::StatsController
 use Rack::Deflater
 
 run Controllers::ApplicationController

@@ -26,7 +26,7 @@
       <div class="columns">
         <div class="column">
           <h2>Repositories</h2>
-          <p class="lead">Please select one or more repositories to show the Pull Requests</p>
+          <p class="lead">Please select one or more repositories to show the Pull Requests (or the statistics)</p>
           <% if repos.nil? || repos.empty? %>
             <div class="blankslate">
               <h3>Nothing to show here.</h3>
@@ -63,7 +63,7 @@
               <em class="select filter__selectall">Select all repositories</em>
             </label>
           </div>
-          <form id="repoForm" action="/pulls" method="post" class="repo-list">
+          <form id="repoForm" method="post" class="repo-list">
             <input type="text" class="large-input search" placeholder="Search repository name..." onKeyPress="if (event.which == 13) return false;">
             <% repos.each do |repo| %>
             <% next unless repo %>
@@ -79,9 +79,9 @@
             <% end %>
             <% if !repos.nil? && !repos.empty? %>
             <div class="repo-actions">
-              <button type="button" class="btn btn-success" onClick="javascript:validateRepoSelection()">Show Pull Requests</button>
-              <span id="uncheckedMessage" style="display:none" class="repo-error">Please select at least one repository</span>
-              <%= puts repos %>
+              <button type="button" class="btn btn-success" onClick="javascript:validateRepoSelectionPulls()">Show Pull Requests</button>
+              <button type="button" class="btn btn-success" onClick="javascript:validateRepoSelectionStats()">Show Statistics </button>
+              <div id="uncheckedMessage" style="display:none" class="repo-error">Please select at least one repository</div>
             </div><!-- end of actions -->
             <% end %>
           </form><!-- end of form -->

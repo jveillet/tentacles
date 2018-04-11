@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/primer.min.css">
+    <% if ENV['APP_ENV'] == 'production' %>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <% else %>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <% end %>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container clearfix">
+        <a href="#" class="logo">Tentacles</a>
+        <div class="user">
+          <p class="user-card">
+            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="32" height="32">
+            <span class="user-fullname text-white"><%= user.name %></span><br>
+            <a href="<%= user.html_url %>" class="user-login link-gray-dark"><small>@<%= user.login %></small></a>
+          </p><!-- end of user card -->
+        </div><!-- end of user -->
+      </div><!-- end of container -->
+    </div><!-- end of topbar -->
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h2>Statistics</h2>
+          <p class="lead lead-align">This is all the statistics available concerning these repositories</p>
+          <div class="back">
+            <a href="/repositories" class="link-blue">&larr; Back to repositories</a>
+          </div><!-- end of back link -->
+          <% if pull_request.nil? || pull_request.empty? %>
+            <div class="blankslate">
+              <h3>Nothing to show here</h3>
+              <p>There is no Pull Request pending for these repositories</p>
+              <p>Please go back to the <a href="/repositories" title="Repositories selection page">repositories</a> selection</p>
+            </div>
+          <% end %>
+          <% pull_request.each do |pr| %>
+          <% next if pr.nil? || pr.empty? %>
+          <hr class="repo-separator">
+        <% end %>
+          <% if pull_request && !pull_request.empty? %>
+          <div class="back">
+            <a href="/repositories" class="link-blue">&larr; Back to repositories</a>
+          </div><!-- end of back link -->
+          <% end %>
+        </div><!-- end of column -->
+      </div><!-- end of columns -->
+    </div><!-- end of container -->
+    <script src="js/bliss.min.js"></script>
+    <script src="js/moment.min.js"></script>
+  </body>
+</html>
