@@ -21,14 +21,15 @@ module Controllers
     end
 
     def seconds_to_units(seconds)
-      mm, ss = seconds.divmod(60)
-      hh, mm = mm.divmod(60)
-      dd, hh = hh.divmod(24)
-      puts '%d days, %d hours, %d minutes and %d seconds' % [dd, hh, mm, ss]
+      mm, _ss = seconds.divmod(60)
+      hh, _mm = mm.divmod(60)
+      dd, _hh = hh.divmod(24)
+      dd
     end
 
     post '/stats' do
       pull_requests_groups = []
+      number_of_comments = 0
 
       params[:repos].each do |repo|
         next unless repo && !repo.empty?
@@ -37,38 +38,49 @@ module Controllers
         )
         next if !issues || issues.empty?
         issues.each do |issue|
-          issue[:labels] = github_issues.find_labels_by_issue(
-            repo,
-            issue[:number],
-            access_token: access_token
-          )
           comments = github_issues.find_comments_by_issue(
             repo,
             issue[:number],
             access_token: access_token
           )
           issue[:comments_count] = comments.count
+          number_of_comments = comments.count
         end
         pull_requests_groups << issues
       end
 
+      count_hash = {}
+
       pull_requests_groups.each do |pull_requests|
-        pull_request_number = 0
-        lifetime_sum = 0
+        repo_name = nil
+        pull_requests.each do |pull_request|
+          repo_name = pull_request.to_h.dig(:head, :repo, :name)
+        end
+        count_hash[repo_name] = number_of_comments
+      end
+
+      average_hash = {}
+
+      pull_requests_groups.each do |pull_requests|
+        pull_request_number, lifetime_sum, repo_name = 0, 0
         pull_requests.each do |pull_request|
           creation_date = pull_request.to_h.dig(:created_at)
           closure_date = pull_request.to_h.dig(:closed_at)
-          lifetime_pullrequest = closure_date - creation_date
+          repo_name = pull_request.to_h.dig(:head, :repo, :name)
+          lifetime_pullrequest = (closure_date - creation_date)
           lifetime_sum += lifetime_pullrequest
           pull_request_number += 1
         end
-        average_lifetime = lifetime_sum / pull_request_number
+        average_lifetime = (lifetime_sum / pull_request_number)
         average_per_repo = seconds_to_units(average_lifetime)
+        average_hash[repo_name] = average_per_repo
       end
+
       erb :stats, locals: {
         pull_request: pull_requests_groups,
         user: current_user,
-        average: average_per_repo
+        average: average_hash,
+        count: count_hash
       }
     end
   end

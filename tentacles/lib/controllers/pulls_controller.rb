@@ -28,20 +28,6 @@ module Controllers
         issues = github_issues.find_issues_by_repo(
           repo, access_token: access_token
         )
-        next if !issues || issues.empty?
-        issues.each do |issue|
-          issue[:labels] = github_issues.find_labels_by_issue(
-            repo,
-            issue[:number],
-            access_token: access_token
-          )
-          comments = github_issues.find_comments_by_issue(
-            repo,
-            issue[:number],
-            access_token: access_token
-          )
-          issue[:comments_count] = comments.count
-        end
         pull_requests_groups << issues
       end
 

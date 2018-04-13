@@ -344,3 +344,29 @@ input[type=text] {
   font-size: 2.5vw;
   color: #4E4E4E;
 }
+
+/** Stats **/
+
+.stats-dashboard {
+  font-size: 3.5vw;
+  font-weight: bold;
+  color: #FFFFFF;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.stats-db-average-time {
+  box-shadow: 0.05em 0.05em 0.01em grey;
+  position: relative;
+  text-align: center;
+  width: 6vw;
+  height: 6vw;
+  background-color: #4E4E4E;
+}
+
+.stats-db-repo {
+  font-size: 1.5vw;
+  color: #4E4E4E;
+}

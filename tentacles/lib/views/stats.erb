@@ -13,7 +13,7 @@
   <body>
     <div class="topbar">
       <div class="container clearfix">
-        <a href="#" class="logo">Tentacles</a>
+        <a href="/repositories" class="logo">Tentacles</a>
         <div class="user">
           <p class="user-card">
             <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="32" height="32">
@@ -27,10 +27,56 @@
       <div class="columns">
         <div class="column">
           <h2>Statistics</h2>
-          <p class="lead lead-align">This is all the statistics available concerning these repositories</p>
+          <p class="lead lead-align">These are all the statistics available for these repositories</p>
           <div class="back">
             <a href="/repositories" class="link-blue">&larr; Back to repositories</a>
           </div><!-- end of back link -->
+          <p class="lead stats-db-repo">Average lifetime (in days) of a pull request per repository</p>
+          <div class="stats-dashboard">
+            <% average.each do |repo, average_per_repo| %>
+            <table>
+              <thead>
+                <tr>
+                  <td>
+                    <p class="stats-db-average-time"><%= average_per_repo %></p>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <p class="stats-db-repo"><%= repo %></p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <% end %>
+          </div>
+          <!-- end of average -->
+          <hr class="repo-separator">
+          <p class="lead stats-db-repo">Average number of comments per repository</p>
+          <div class="stats-dashboard">
+            <% count.each do |repo, count_per_repo| %>
+            <table>
+              <thead>
+                <tr>
+                  <td>
+                    <p class="stats-db-average-time"><%= count_per_repo %></p>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <p class="stats-db-repo"><%= repo %></p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <% end %>
+          </div>
+          <!-- end of count -->
+          <hr class="repo-separator">
           <% if pull_request.nil? || pull_request.empty? %>
             <div class="blankslate">
               <h3>Nothing to show here</h3>
@@ -40,7 +86,6 @@
           <% end %>
           <% pull_request.each do |pr| %>
           <% next if pr.nil? || pr.empty? %>
-          <hr class="repo-separator">
         <% end %>
           <% if pull_request && !pull_request.empty? %>
           <div class="back">
