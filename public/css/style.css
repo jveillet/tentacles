@@ -347,7 +347,7 @@ input[type=text] {
 
 /** Stats **/
 
-.stats-dashboard {
+.stats {
   font-size: 3.5vw;
   font-weight: bold;
   color: #FFFFFF;
@@ -357,7 +357,7 @@ input[type=text] {
   justify-content: space-around;
 }
 
-.stats-db-average-time {
+.stats-average-time {
   box-shadow: 0.05em 0.05em 0.01em grey;
   position: relative;
   text-align: center;
@@ -366,7 +366,7 @@ input[type=text] {
   background-color: #4E4E4E;
 }
 
-.stats-db-repo {
+.stats-repo {
   font-size: 1.5vw;
   color: #4E4E4E;
 }
