@@ -31,21 +31,21 @@
           <div class="back">
             <a href="/repositories" class="link-blue">&larr; Back to repositories</a>
           </div><!-- end of back link -->
-          <p class="lead stats-db-repo">Average lifetime (in days) of a pull request per repository</p>
-          <div class="stats-dashboard">
+          <p class="lead stats-repo">Average lifetime (in days) of a pull request per repository</p>
+          <div class="stats">
             <% average.each do |repo, average_per_repo| %>
             <table>
               <thead>
                 <tr>
                   <td>
-                    <p class="stats-db-average-time"><%= average_per_repo %></p>
+                    <p class="stats-average-time"><%= average_per_repo %></p>
                   </td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
-                    <p class="stats-db-repo"><%= repo %></p>
+                    <p class="stats-repo"><%= repo %></p>
                   </td>
                 </tr>
               </tbody>
@@ -54,21 +54,21 @@
           </div>
           <!-- end of average -->
           <hr class="repo-separator">
-          <p class="lead stats-db-repo">Average number of comments per repository</p>
-          <div class="stats-dashboard">
+          <p class="lead stats-repo">Average number of comments per repository</p>
+          <div class="stats">
             <% count.each do |repo, count_per_repo| %>
             <table>
               <thead>
                 <tr>
                   <td>
-                    <p class="stats-db-average-time"><%= count_per_repo %></p>
+                    <p class="stats-average-time"><%= count_per_repo %></p>
                   </td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
-                    <p class="stats-db-repo"><%= repo %></p>
+                    <p class="stats-repo"><%= repo %></p>
                   </td>
                 </tr>
               </tbody>
@@ -80,7 +80,7 @@
           <% if pull_request.nil? || pull_request.empty? %>
             <div class="blankslate">
               <h3>Nothing to show here</h3>
-              <p>There is no Pull Request pending for these repositories</p>
+              <p>There is no closed Pull Request for these repositories</p>
               <p>Please go back to the <a href="/repositories" title="Repositories selection page">repositories</a> selection</p>
             </div>
           <% end %>
