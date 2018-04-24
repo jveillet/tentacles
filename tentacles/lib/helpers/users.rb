@@ -22,9 +22,5 @@ module Helpers
       session.clear
       redirect '/'
     end
-
-    def users
-      @users ||= Repositories::User.new
-    end
   end
 end
