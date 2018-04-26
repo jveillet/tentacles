@@ -17,7 +17,7 @@ module Controllers
       def users
         @users ||= Repositories::User.new
       end
-      
+
       def repositories
         @repositories ||= Repositories::Repositories.new
       end

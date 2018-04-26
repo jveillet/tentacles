@@ -44,15 +44,28 @@ module Helpers
       end
     end
 
+    def count_number_of_closed_issues_by_repo(repo)
+      issues = github_issues.find_closed_issues_by_repo(
+        repo, access_token: access_token
+      )
+      issues.length
+    end
+
     def find_repo_and_total_number_of_comments(pull_requests)
-      repo_name = nil
-      total_number_of_comments = 0
+      total_number_of_comments, repo_name, average_comments = 0
       pull_requests.each do |pull_request|
-        repo_name = pull_request.to_h.dig(:head, :repo, :name)
         number_of_comments_per_pr = pull_request.to_h[:comments_count]
         total_number_of_comments += number_of_comments_per_pr
       end
-      [repo_name, total_number_of_comments]
+      repo_name = pull_requests[0].to_h.dig(:head, :repo, :name)
+      repo_full_name = pull_requests[0].to_h.dig(:head, :repo, :full_name)
+      count = count_number_of_closed_issues_by_repo(repo_full_name)
+      if !count.zero?
+        average_comments = total_number_of_comments / count
+      else
+        average_comments = 0
+      end
+      [repo_name, average_comments]
     end
 
     def compute_lifetime_sum(pull_requests)

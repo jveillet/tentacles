@@ -56,12 +56,15 @@ module Datasources
       def find_comments_by_issue(repository_name, issue_number, access_token:)
         return [] unless repository_name
         begin
-          comments = client(access_token).pull_request_comments(
-            repository_name,
-            issue_number
-          )
-          return [] if comments.nil? || comments.empty?
-          comments
+          comments = client(access_token).issues_comments(repository_name)
+          issue_comments = []
+          comments.each do |comment|
+            # -1 to get the last element ie the issue number
+            next if comment[:issue_url].split("/")[-1] != issue_number.to_s
+            issue_comments << comment
+          end
+          return [] if issue_comments.nil? || issue_comments.empty?
+          issue_comments
         rescue Octokit::NotFound => e
           puts e.message
           []
