@@ -28,7 +28,8 @@ module Datasources
       def find_closed_issues_by_repo(repository_name, access_token:)
         return [] unless repository_name
         begin
-          records = client(access_token).pull_requests(repository_name, state: 'closed')
+          records = client(access_token)
+                    .pull_requests(repository_name, state: 'closed')
           return [] if records.nil? || records.empty?
           records
         rescue Octokit::NotFound => e

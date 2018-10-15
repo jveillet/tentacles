@@ -29,7 +29,6 @@ module Controllers
 
     post '/stats' do
       pull_requests_groups = []
-      number_of_comments = 0
 
       params[:repos].each do |repo|
         next unless repo && !repo.empty?
@@ -44,24 +43,28 @@ module Controllers
             access_token: access_token
           )
           issue[:comments_count] = comments.count
-          number_of_comments = comments.count
         end
         pull_requests_groups << issues
       end
 
       count_hash = {}
+      total_number_of_comments = 0
 
       pull_requests_groups.each do |pull_requests|
+        next unless pull_requests && !pull_requests.empty?
         repo_name = nil
         pull_requests.each do |pull_request|
           repo_name = pull_request.to_h.dig(:head, :repo, :name)
+          number_of_comments_per_pr = pull_request.to_h.dig(:comments_count)
+          total_number_of_comments += number_of_comments_per_pr
         end
-        count_hash[repo_name] = number_of_comments
+        count_hash[repo_name] = total_number_of_comments
       end
 
       average_hash = {}
 
       pull_requests_groups.each do |pull_requests|
+        next unless pull_requests && !pull_requests.empty?
         pull_request_number, lifetime_sum, repo_name = 0, 0
         pull_requests.each do |pull_request|
           creation_date = pull_request.to_h.dig(:created_at)
