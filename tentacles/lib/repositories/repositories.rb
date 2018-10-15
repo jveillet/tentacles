@@ -9,7 +9,7 @@ module Repositories
   #
   class Repositories
     include Utils::Cache
-    DEFAULT_VISIBILITY = 'all'.freeze
+    DEFAULT_VISIBILITY = 'all'
 
     def find_repositories_by_user(user, visibility_filter: DEFAULT_VISIBILITY,
                                   access_token:)
