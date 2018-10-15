@@ -1,4 +1,6 @@
-require './app/repositories/user'
+# frozen_string_literal: true
+
+require 'repositories/user'
 
 module Helpers
   ##

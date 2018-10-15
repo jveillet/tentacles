@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'connection'
 
 module Datasources
@@ -26,11 +28,11 @@ module Datasources
         result = RestClient.post(
           ENV['GITHUB_OAUTH_URL'],
           {
-            :client_id => ENV['GH_CLIENT_ID'],
-            :client_secret => ENV['GH_CLIENT_SECRET'],
-            :code => code
+            client_id: ENV['GH_CLIENT_ID'],
+            client_secret: ENV['GH_CLIENT_SECRET'],
+            code: code
           },
-          :accept => :json
+          accept: :json
         )
         return unless result && result['access_token']
         JSON.parse(result)['access_token']

@@ -1,4 +1,6 @@
-require 'dotenv'
+# frozen_string_literal: true
+
+require 'dotenv/load'
 require 'rack'
 require 'rack/session/redis'
 
@@ -13,14 +15,20 @@ use Rack::Session::Redis,
     pool_timeout: 15,
     expire_after: 28_800 # 8h
 
-require './app/controllers/application_controller'
-require './app/controllers/authentication_controller'
-require './app/controllers/repositories_controller'
-require './app/controllers/pulls_controller'
+$LOAD_PATH.unshift(
+  File.join(File.dirname(__FILE__), 'tentacles/lib')
+)
+
+require 'controllers/application_controller'
+require 'controllers/authentication_controller'
+require 'controllers/repositories_controller'
+require 'controllers/pulls_controller'
+require 'controllers/stats_controller'
 
 use Controllers::AuthenticationController
 use Controllers::RepositoriesController
 use Controllers::PullsController
+use Controllers::StatsController
 use Rack::Deflater
 
 run Controllers::ApplicationController

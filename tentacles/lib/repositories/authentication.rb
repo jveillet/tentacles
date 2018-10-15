@@ -1,4 +1,6 @@
-require './app/datasources/github/authentication'
+# frozen_string_literal: true
+
+require 'datasources/github'
 
 module Repositories
   ##

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'connection'
 require_relative 'pagination'
 
@@ -11,11 +13,22 @@ module Datasources
 
       PER_PAGE = Integer(ENV['DEFAULT_PER_PAGE'] || 100)
 
-      def find_issues_by_repo(repository_name, access_token:,
-                              per_page: PER_PAGE)
+      def find_issues_by_repo(repository_name, access_token:)
         return [] unless repository_name
         begin
           records = client(access_token).pull_requests(repository_name)
+          return [] if records.nil? || records.empty?
+          records
+        rescue Octokit::NotFound => e
+          puts e.message
+          []
+        end
+      end
+
+      def find_closed_issues_by_repo(repository_name, access_token:)
+        return [] unless repository_name
+        begin
+          records = client(access_token).pull_requests(repository_name, state: 'closed')
           return [] if records.nil? || records.empty?
           records
         rescue Octokit::NotFound => e

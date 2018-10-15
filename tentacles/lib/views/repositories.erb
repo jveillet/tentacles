@@ -15,7 +15,7 @@
         <a href="#" class="logo">Tentacles</a>
         <div class="user">
           <p class="user-card">
-            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="32" height="32">
+            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="40" height="40">
             <span class="user-fullname text-white"><%= user.name %></span><br>
             <a href="<%= user.html_url %>" class="user-login link-gray-dark"><small>@<%= user.login %></small></a>
           </p><!-- end of user card -->
@@ -23,34 +23,71 @@
       </div><!-- end of container -->
     </div><!-- end of topbar -->
     <div class="container">
+      <br>
+      <div class="dashboard">
+        <% pull_requests_per_repo.each do |repo_name, pull_requests_count| %>
+        <table>
+        <thead>
+          <tr>
+            <td>
+              <% if pull_requests_count == 1 %>
+              <p class="db-pullrequest db-pr-low"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% elsif pull_requests_count <= 3 %>
+              <p class="db-pullrequest db-pr-medium"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% elsif pull_requests_count <= 5 %>
+              <p class="db-pullrequest db-pr-high"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% else %>
+              <p class="db-pullrequest db-pr-critical"><%= pull_requests_count %></p>
+            </td>
+              <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+            <p class="db-repo"><%= repo_name %></p>
+          </td>
+          </tr>
+        </tbody>
+        <% end %>
+        </table>
+      </div>
+      <!-- end of dashboard -->
+    <div class="container">
       <div class="columns">
         <div class="column">
           <h2>Repositories</h2>
-          <p class="lead">Please select one or more repository to show the Pull Requests.</p>
+          <p class="lead">Please select one or more repositories to show the Pull Requests (or the statistics)</p>
           <% if repos.nil? || repos.empty? %>
             <div class="blankslate">
               <h3>Nothing to show here.</h3>
-              <p>We didn't find any repository on your profile.</p>
-              <p>Please head to <a href="https://github.com" title="Github website">Github</a> to create a new Repository.</p>
+              <p>We didn't find any repository on your profile</p>
+              <p>Please head to <a href="https://github.com" title="Github website">Github</a> to create a new repository</p>
             </div><!-- end of blank state -->
           <% end %>
           <div class="repo-filters">
             <ul class="repo-filter__list">
               <% visibility = params[:visibility] || 'all' %>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=all" class="link-green <%= 'selected' if visibility == 'all' %>">
+                <a href="/repositories?visibility=all" class="link-blue <%= 'selected' if visibility == 'all' %>">
                   <span class="count"></span>
                   All
                 </a>
               </li>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=public" class="link-green <%= 'selected' if visibility == 'public' %>">
+                <a href="/repositories?visibility=public" class="link-blue <%= 'selected' if visibility == 'public' %>">
                   <span class="count"></span>
                   Public
                 </a>
               </li>
               <li class="repo-filter__item">
-                <a href="/repositories?visibility=private" class="link-green <%= 'selected' if visibility == 'private' %>">
+                <a href="/repositories?visibility=private" class="link-blue <%= 'selected' if visibility == 'private' %>">
                   <span class="count"></span>
                   Private
                 </a>
@@ -60,17 +97,16 @@
           <div class="form-checkbox">
             <label>
               <input type="checkbox" name="select_all" onClick="javascript:selectAll();">
-              <em class="highlight filter__selectall">Select all repositories</em>
+              <em class="select filter__selectall">Select all repositories</em>
             </label>
           </div>
-          <form action="/pulls" method="post" class="repo-list">
-            <!-- <input type="text" class="search form-control input-lg" placeholder="Search repository name.."> -->
-            <input type="text" class="large-input search" placeholder="Search repository name..">
+          <form id="repoForm" method="post" class="repo-list">
+            <input type="text" class="large-input search" placeholder="Search repository name..." onKeyPress="if (event.which == 13) return false;">
             <% repos.each do |repo| %>
-            <% next if repo.nil? %>
+            <% next unless repo %>
             <div class="form-checkbox">
               <label class="js-repo-item">
-                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="repo-list__item" data-private="<%= repo[:private] %>">
+                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="isRepoCheckBox repo-list__item" data-private="<%= repo[:private] %>">
                 <%= repo[:full_name] %>
                 <% if repo[:private] %>
                   <span class="label label-private">Private</span>
@@ -80,7 +116,9 @@
             <% end %>
             <% if !repos.nil? && !repos.empty? %>
             <div class="repo-actions">
-              <button type="submit" class="btn btn-primary">Show pull requests</button>
+              <button type="button" class="btn btn-success" onClick="javascript:validateRepoSelectionPulls()">Show Pull Requests</button>
+              <button type="button" class="btn btn-success" onClick="javascript:validateRepoSelectionStats()">Show Statistics </button>
+              <div id="uncheckedMessage" style="display:none" class="repo-error">Please select at least one repository</div>
             </div><!-- end of actions -->
             <% end %>
           </form><!-- end of form -->

@@ -1,5 +1,7 @@
-require './app/datasources/github/issues'
-require './app/utils/cache'
+# frozen_string_literal: true
+
+require 'datasources/github'
+require 'utils/cache'
 
 module Repositories
   ##
@@ -14,6 +16,16 @@ module Repositories
       key = cache_key('issues_by_repo', repository_name)
       load_from_cache(key, ttl: ISSUES_TTL) do
         github.find_issues_by_repo(
+          repository_name,
+          access_token: access_token
+        )
+      end
+    end
+
+    def find_closed_issues_by_repo(repository_name, access_token:)
+      key = cache_key('closed_issues_by_repo', repository_name)
+      load_from_cache(key, ttl: ISSUES_TTL) do
+        github.find_closed_issues_by_repo(
           repository_name,
           access_token: access_token
         )

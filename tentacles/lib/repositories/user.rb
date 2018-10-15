@@ -1,5 +1,7 @@
-require './app/datasources/github/user'
-require './app/utils/cache'
+# frozen_string_literal: true
+
+require 'datasources/github'
+require 'utils/cache'
 
 module Repositories
   ##

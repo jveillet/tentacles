@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="css/primer.min.css">
@@ -12,7 +13,7 @@
   <body>
     <div class="topbar">
       <div class="container clearfix">
-        <a href="#" class="logo">Tentacles</a>
+        <a href="/repositories" class="logo">Tentacles</a>
         <div class="user">
           <p class="user-card">
             <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="32" height="32">
@@ -23,27 +24,65 @@
       </div><!-- end of container -->
     </div><!-- end of topbar -->
     <div class="container">
+      <br>
+      <div class="dashboard">
+        <% pull_requests_per_repo.each do |repo_name, pull_requests_count| %>
+        <table>
+        <thead>
+          <tr>
+            <td>
+              <% if pull_requests_count == 1 %>
+              <p class="db-pullrequest db-pr-low"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% elsif pull_requests_count <= 3 %>
+              <p class="db-pullrequest db-pr-medium"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% elsif pull_requests_count <= 5 %>
+              <p class="db-pullrequest db-pr-high"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% else %>
+              <p class="db-pullrequest db-pr-critical"><%= pull_requests_count %></p>
+            </td>
+              <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+            <p class="db-repo"><%= repo_name %></p>
+          </td>
+          </tr>
+        </tbody>
+        <% end %>
+        </table>
+      </div>
+      <!-- end of dashboard -->
+      <br>
+      <br>
       <div class="columns">
         <div class="column">
           <h2>Pull requests</h2>
-          <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged.</p>
+          <p class="lead lead-align">This is all the opened Pull Requests that should be reviewed and merged</p>
           <div class="back">
-            <a href="/repositories" class="link-green">&larr; Back to repositories</a>
+            <a href="/repositories" class="link-blue">&larr; Back to repositories</a>
           </div><!-- end of back link -->
           <% if pull_request.nil? || pull_request.empty? %>
             <div class="blankslate">
-              <h3>Nothing to show here.</h3>
-              <p>There is no Pull Request pending for this repositories</p>
-              <p>Please go back to the <a href="/repositories" title="Repositories selection page">Repositories</a> selection.</p>
+              <h3>Nothing to show here</h3>
+              <p>There is no Pull Request pending for these repositories</p>
+              <p>Please go back to the <a href="/repositories" title="Repositories selection page">repositories</a> selection</p>
             </div>
           <% end %>
           <% pull_request.each do |pr| %>
           <% next if pr.nil? || pr.empty? %>
           <div class="pr-repo">
             <div class="pr-repo__link">
-              <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-green"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
+              <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
               <span class="path-divider">/</span>
-              <a href="<%= pr[0][:head][:repo][:html_url] %>" class="link-green"><%= pr[0][:head][:repo][:full_name].split('/').last %></a>
+              <a href="<%= pr[0][:head][:repo][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').last %></a>
               <% if pr[0][:head][:repo][:private] %>
                 <span class="label label-private">Private</span>
               <% end %>
@@ -80,7 +119,7 @@
         <% end %>
           <% if pull_request && !pull_request.empty? %>
           <div class="back">
-            <a href="/repositories" class="link-green">&larr; Back to repositories</a>
+            <a href="/repositories" class="link-blue">&larr; Back to repositories</a>
           </div><!-- end of back link -->
           <% end %>
         </div><!-- end of column -->

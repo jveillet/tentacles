@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'redis'
 require 'zlib'
 
@@ -12,9 +14,9 @@ module Utils
     ##
     # Load value from cache.
     #
-    # @param key[String] The cache key
-    # @param ttl[Integer] Time to live of the cache key
-    # @param block[Block] The block to yeld if there is no value in cache
+    # @param key[String] The cache key.
+    # @param ttl[Integer] The time to live of the cache key.
+    # @param block[Block] The block to yield if there is no value in cache.
     #
     def load_from_cache(key, ttl: CACHE_TTL, &block)
       return yield block if cache_disabled?
@@ -29,8 +31,8 @@ module Utils
     ##
     # Write a value in the cache.
     #
-    # @param key[String] the namespace of the key in the cache.
-    # @param ttl[Integer] the time to live of the key
+    # @param key[String] The namespace of the key in the cache.
+    # @param ttl[Integer] The time to live of the key.
     # @param value[Any] The value to write in the cache:
     # It's serialized so it can be any format.
     #
@@ -55,7 +57,7 @@ module Utils
     ##
     # Define the cache key prefix.
     #
-    # @param key[String] the key to add to the cache.
+    # @param key[String] The key to add to the cache.
     # @param attributes[Array] List of optionnal parameters.
     #
     # @result [String] SHA256 of the key + attributes
