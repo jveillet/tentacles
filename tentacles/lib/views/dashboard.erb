@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/primer.min.css">
+    <% if ENV['APP_ENV'] == 'production' %>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <% else %>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <% end %>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container clearfix">
+        <a href="#" class="logo">Tentacles</a>
+        <div class="user">
+          <p class="user-card">
+            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="40" height="40">
+            <span class="user-fullname text-white"><%= user.name %></span><br>
+            <a href="<%= user.html_url %>" class="user-login link-gray-dark"><small>@<%= user.login %></small></a>
+          </p><!-- end of user card -->
+        </div><!-- end of user -->
+      </div><!-- end of container -->
+    </div><!-- end of topbar -->
+    <div class="container">
+      <br>
+      <div class="dashboard">
+        <% pull_requests_per_repo.each do |repo_name, pull_requests_count| %>
+        <table>
+        <thead>
+          <tr>
+            <td>
+              <% if pull_requests_count == 1 %>
+              <p class="db-pullrequest db-pr-low"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% elsif pull_requests_count <= 3 %>
+              <p class="db-pullrequest db-pr-medium"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% elsif pull_requests_count <= 5 %>
+              <p class="db-pullrequest db-pr-high"><%= pull_requests_count %></p>
+            </td>
+            <td>
+              <% else %>
+              <p class="db-pullrequest db-pr-critical"><%= pull_requests_count %></p>
+            </td>
+              <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+            <p class="db-repo"><%= repo_name %></p>
+          </td>
+          </tr>
+        </tbody>
+        <% end %>
+        </table>
+      </div>
+      <!-- end of dashboard -->
+    </div>
+    <script src="js/bliss.min.js"></script>
+    <% if ENV['APP_ENV'] == 'production' %>
+    <script src="js/scripts.min.js"></script>
+    <% else %>
+    <script src="js/scripts.js"></script>
+    <% end %>
+  </body>
+</html>
