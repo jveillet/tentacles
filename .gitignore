@@ -109,3 +109,8 @@ npm-debug.log
 *.p12
 *.pem
 *.cert
+
+# Bundled assets
+style.min.css
+scripts.min.js
+*.map

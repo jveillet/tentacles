@@ -11,8 +11,7 @@ var minify = require('gulp-minify');
 var CSS_DEST = 'public/css/';
 var JS_DEST = 'public/js/'
 
-gulp.task('default', function() {
-  // place code for your default task here
+gulp.task('build:css', function() {
   return gulp.src(CSS_DEST+'style.css')
         .pipe(sourcemaps.init())
         .pipe(cssnano())
@@ -22,8 +21,8 @@ gulp.task('default', function() {
         .pipe(gulp.dest(CSS_DEST));
 });
 
-gulp.task('minifyjs', function() {
-  gulp.src(JS_DEST+'scripts.js')
+gulp.task('build:js', function() {
+  return gulp.src(JS_DEST+'scripts.js')
     .pipe(minify({
         ext:{
             src:'.js',
@@ -31,5 +30,8 @@ gulp.task('minifyjs', function() {
         },
         ignoreFiles: ['.min.js']
     }))
-    .pipe(gulp.dest(JS_DEST))
+    .pipe(gulp.dest(JS_DEST));
 });
+
+// Guil build task to run the CSS & JS Build.
+gulp.task('build', gulp.series('build:css', 'build:js'));

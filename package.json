@@ -3,8 +3,12 @@
   "version": "0.0.3",
   "description": "All your Pull Requests, from all your repositories",
   "main": "index.html",
+  "engines": {
+    "node": "8.12.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -17,13 +21,13 @@
   },
   "homepage": "https://github.com/jveillet/tentacles#readme",
   "devDependencies": {
-    "postcss": "^6.0.11",
-    "autoprefixer": "^7.1.4",
-    "gulp": "^3.9.1",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-postcss": "^7.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^2.6.1",
-    "gulp-minify": "^1.0.0"
+    "postcss": "^7.0.5",
+    "autoprefixer": "^9.2.0",
+    "gulp": "^v4.0.0",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-minify": "^3.1.0"
   }
 }
