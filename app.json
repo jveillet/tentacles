@@ -33,6 +33,9 @@
     },
     "WEB_WORKERS": {
       "description": "Number of workers"
+    },
+    "NODE_ENV": {
+      "description": "Node JS environment (should be production)"
     }
   }
 }
