@@ -1,4 +1,5 @@
 # Tentacles
+
 All the pull requests from your repositories (and the organizations you belong to) curated into a single web page.
 All the results are displayed in a Github fashion (like the Pulls tab), but separated by repo.
 
@@ -25,18 +26,27 @@ Clone the repository:
 ```bash
 $ git clone git@github.com:jveillet/tentacles.git
 $ cd tentacles
-```
-
-Install the project with Docker:
-```bash
 $ docker build
-$ docker-compose run --rm web bundle install --clean
 ```
 
 ## Usage
+
+## Build Assets
+
+```bash
+$ docker-compose run --rm web gulp build
+$ # Or for CSS only
+$ docker-compose run --rm web gulp build:css
+$ # Or for JS only
+$ docker-compose run --rm web gulp build:js
+```
+
+## Launch Server
 
 ```bash
 $ docker-compose run --rm web
 $ # Or
 $ docker-compose up
 ```
+
+

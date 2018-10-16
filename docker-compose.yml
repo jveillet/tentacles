@@ -1,29 +1,15 @@
-bundler:
-  image: heroku/heroku:16-build
-  volumes:
-    - /bundle
+version: '3'
+services:
 
-redis:
+  redis:
     image: redis
     ports:
-      - "6379:6379"
+      - "6389:6379"
 
-web:
-  build: .
-  ports:
-    - "4011:3000"
-  volumes:
-    - .:/tentacles/
-  volumes_from:
-    - bundler
-  command: bundle exec foreman start web
-
-shotgun:
+  web:
     build: .
     ports:
-      - "4012:3000"
+      - "4011:3000"
     volumes:
-      - .:/tentacles/
-    volumes_from:
-      - bundler
-    command: bundle exec shotgun -o 0.0.0.0
+      - .:/home/tentacles/src/tentacles/
+    command: foreman start web
