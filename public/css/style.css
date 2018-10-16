@@ -33,7 +33,7 @@
 }
 
 .lead {
-  color: #416666;
+  color: #4f3665;
 }
 
 /** General Repositories **/
@@ -47,7 +47,7 @@
 .topbar {
   line-height: 1.8;
   margin-bottom: 1.5rem;
-  background-color: #588B8B;
+  background-image: linear-gradient(to right,#5d3c7b 30%,#aa70b5,#875390);
   color: #ffffff;
   overflow: auto;
 }
@@ -76,7 +76,7 @@
 }
 .avatar-small {
   border-radius: 50%;
-  border: 0.2em solid #416666;
+  border: 0.2em solid #5d3c7a;
 }
 .user-avatar {
   float: left;
@@ -85,7 +85,7 @@
   color: #ffffff;
 }
 .link-blue {
-  color: #588B8B!important;
+  color: #a86eb2!important;
 }
 .link-white {
   color: #ffffff!important;
@@ -96,11 +96,13 @@
   .topbar {
     line-height: 1.8;
     margin-bottom: 1.5rem;
-    background-color: #588B8B;
+    background-image: linear-gradient(to right,#5d3c7b 30%,#aa70b5,#875390);
     color: #ffffff;
   }
   .logo {
-    font-size: 2em;
+    font-size: 1.8em;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
   }
   .user {
     float: right;
@@ -153,7 +155,7 @@
   margin-bottom: 1em;
 }
 .repo-filter__item .selected {
-  border-bottom: .25em solid #e36209;
+  border-bottom: .25em solid #a46bae;
 }
 hr:last-child {
   display: none !important;
