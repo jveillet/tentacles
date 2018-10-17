@@ -52,8 +52,14 @@ module Controllers
 
       erb :repositories, locals: {
         user: current_user,
-        repos: repos
+        repos: repos,
+        selected_repos: selected_repos
       }
+    end
+
+    post '/repositories/selection' do
+      cookies[:repos] = params[:repos]
+      redirect to(params[:redirect])
     end
   end
 end
