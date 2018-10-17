@@ -44,7 +44,7 @@ module Controllers
         pull_request: pull_requests_groups,
         user: current_user,
         pull_requests_per_repo: pr_per_repo
-      }
+      }, layout: :tentacles_layout
     end
   end
 end

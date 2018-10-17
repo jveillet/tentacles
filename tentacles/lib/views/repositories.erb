@@ -1,99 +1,67 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<html lang="en">
-  <head>
-    <link rel="stylesheet" type="text/css" href="css/primer.min.css">
-    <% if ENV['APP_ENV'] == 'production' %>
-    <link rel="stylesheet" type="text/css" href="css/style.min.css">
-    <% else %>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <% end %>
-  </head>
-  <body>
-    <div class="topbar">
-      <div class="container clearfix">
-        <a href="#" class="logo">Tentacles</a>
-        <div class="user">
-          <p class="user-card">
-            <img src="<%= user.avatar_url %>" class="avatar avatar-small user-avatar" alt="<%= user.name %>" width="40" height="40">
-            <span class="user-fullname text-white"><%= user.name %></span><br>
-            <a href="<%= user.html_url %>" class="user-login link-gray-dark"><small>@<%= user.login %></small></a>
-          </p><!-- end of user card -->
-        </div><!-- end of user -->
-      </div><!-- end of container -->
-    </div><!-- end of topbar -->
-    <div class="container">
-      <div class="columns">
-        <div class="column">
-          <h2>Repositories</h2>
-          <p class="lead">Please select one or more repositories to show the Pull Requests (or the statistics)</p>
-          <% if repos.nil? || repos.empty? %>
-            <div class="blankslate">
-              <h3>Nothing to show here.</h3>
-              <p>We didn't find any repository on your profile</p>
-              <p>Please head to <a href="https://github.com" title="Github website">Github</a> to create a new repository</p>
-            </div><!-- end of blank state -->
-          <% end %>
-          <div class="repo-filters">
-            <ul class="repo-filter__list">
-              <% visibility = params[:visibility] || 'all' %>
-              <li class="repo-filter__item">
-                <a href="/repositories?visibility=all" class="link-blue <%= 'selected' if visibility == 'all' %>">
-                  <span class="count"></span>
-                  All
-                </a>
-              </li>
-              <li class="repo-filter__item">
-                <a href="/repositories?visibility=public" class="link-blue <%= 'selected' if visibility == 'public' %>">
-                  <span class="count"></span>
-                  Public
-                </a>
-              </li>
-              <li class="repo-filter__item">
-                <a href="/repositories?visibility=private" class="link-blue <%= 'selected' if visibility == 'private' %>">
-                  <span class="count"></span>
-                  Private
-                </a>
-              </li>
-            </ul><!-- end of filters list -->
-          </div><!-- end of filters -->
-          <div class="form-checkbox">
-            <label>
-              <input type="checkbox" name="select_all" onClick="javascript:selectAll();">
-              <em class="select filter__selectall">Select all repositories</em>
-            </label>
-          </div>
-          <form id="repoForm" method="post" class="repo-list">
-            <input type="text" class="large-input search" placeholder="Search repository name..." onKeyPress="if (event.which == 13) return false;">
-            <% repos.each do |repo| %>
-            <% next unless repo %>
-            <div class="form-checkbox">
-              <label class="js-repo-item">
-                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="isRepoCheckBox repo-list__item" 
-                      data-private="<%= repo[:private] %>" <%= selected_repos.include?(repo[:full_name]) ? 'checked' : '' %> >
-                <%= repo[:full_name] %>
-                <% if repo[:private] %>
-                  <span class="label label-private">Private</span>
-                <% end %>
-              </label>
-            </div><!--end of checkbox -->
+<div class="container">
+  <div class="columns">
+    <div class="column">
+      <h2>Repositories</h2>
+      <p class="lead">Please select one or more repositories to show the Pull Requests (or the statistics)</p>
+      <% if repos.nil? || repos.empty? %>
+        <div class="blankslate">
+          <h3>Nothing to show here.</h3>
+          <p>We didn't find any repository on your profile</p>
+          <p>Please head to <a href="https://github.com" title="Github website">Github</a> to create a new repository</p>
+        </div><!-- end of blank state -->
+      <% end %>
+      <div class="repo-filters">
+        <ul class="repo-filter__list">
+          <% visibility = params[:visibility] || 'all' %>
+          <li class="repo-filter__item">
+            <a href="/repositories?visibility=all" class="link-blue <%= 'selected' if visibility == 'all' %>">
+              <span class="count"></span>
+              All
+            </a>
+          </li>
+          <li class="repo-filter__item">
+            <a href="/repositories?visibility=public" class="link-blue <%= 'selected' if visibility == 'public' %>">
+              <span class="count"></span>
+              Public
+            </a>
+          </li>
+          <li class="repo-filter__item">
+            <a href="/repositories?visibility=private" class="link-blue <%= 'selected' if visibility == 'private' %>">
+              <span class="count"></span>
+              Private
+            </a>
+          </li>
+        </ul><!-- end of filters list -->
+      </div><!-- end of filters -->
+      <div class="form-checkbox">
+        <label>
+          <input type="checkbox" name="select_all" onClick="javascript:selectAll();">
+          <em class="select filter__selectall">Select all repositories</em>
+        </label>
+      </div>
+      <form id="repoForm" method="post" class="repo-list">
+        <input type="text" class="large-input search" placeholder="Search repository name..." onKeyPress="if (event.which == 13) return false;">
+        <% repos.each do |repo| %>
+        <% next unless repo %>
+        <div class="form-checkbox">
+          <label class="js-repo-item">
+            <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="isRepoCheckBox repo-list__item" 
+                  data-private="<%= repo[:private] %>" <%= selected_repos.include?(repo[:full_name]) ? 'checked' : '' %> >
+            <%= repo[:full_name] %>
+            <% if repo[:private] %>
+              <span class="label label-private">Private</span>
             <% end %>
-            <% if !repos.nil? && !repos.empty? %>
-            <div class="repo-actions">
-              <button type="button" class="btn btn-success" onClick="javascript:storeSelectionAndRedirect('/pulls')">Show Pull Requests</button>
-              <button type="button" class="btn btn-success" onClick="javascript:storeSelectionAndRedirect('/stats')">Show Statistics </button>
-              <div id="uncheckedMessage" style="display:none" class="repo-error">Please select at least one repository</div>
-            </div><!-- end of actions -->
-            <% end %>
-          </form><!-- end of form -->
-        </div><!-- end of column -->
-      </div><!-- end of columns -->
-    </div><!-- end of container -->
-    <script src="js/bliss.min.js"></script>
-    <% if ENV['APP_ENV'] == 'production' %>
-    <script src="js/scripts.min.js"></script>
-    <% else %>
-    <script src="js/scripts.js"></script>
-    <% end %>
-  </body>
-</html>
+          </label>
+        </div><!--end of checkbox -->
+        <% end %>
+        <% if !repos.nil? && !repos.empty? %>
+        <div class="repo-actions">
+          <button type="button" class="btn btn-success" onClick="javascript:storeSelectionAndRedirect('/pulls')">Show Pull Requests</button>
+          <button type="button" class="btn btn-success" onClick="javascript:storeSelectionAndRedirect('/stats')">Show Statistics </button>
+          <div id="uncheckedMessage" style="display:none" class="repo-error">Please select at least one repository</div>
+        </div><!-- end of actions -->
+        <% end %>
+      </form><!-- end of form -->
+    </div><!-- end of column -->
+  </div><!-- end of columns -->
+</div><!-- end of container -->
