@@ -2,6 +2,7 @@
 
 require 'helpers/state'
 require 'sinatra/base'
+require "sinatra/cookies"
 
 module Controllers
   ##

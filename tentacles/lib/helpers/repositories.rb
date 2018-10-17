@@ -7,6 +7,8 @@ module Helpers
   # Repositories helper
   #
   module Repositories
+    include Sinatra::Cookies
+
     def find_issues(repo)
       github_issues.find_issues_by_repo(
         repo, access_token: access_token
@@ -89,6 +91,15 @@ module Helpers
           find_repo_and_total_number_of_comments(pull_requests)[1]
       end
       count_hash
+    end
+    
+    def selected_repos!
+      redirect to('/repositories') unless cookies[:repos]
+      selected_repos
+    end
+
+    def selected_repos
+      cookies[:repos]&.split('&').to_a
     end
   end
 end

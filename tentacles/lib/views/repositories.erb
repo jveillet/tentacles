@@ -69,7 +69,8 @@
             <% next unless repo %>
             <div class="form-checkbox">
               <label class="js-repo-item">
-                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="isRepoCheckBox repo-list__item" data-private="<%= repo[:private] %>">
+                <input type="checkbox" name="repos[]" value="<%= repo[:full_name] %>" class="isRepoCheckBox repo-list__item" 
+                      data-private="<%= repo[:private] %>" <%= selected_repos.include?(repo[:full_name]) ? 'checked' : '' %> >
                 <%= repo[:full_name] %>
                 <% if repo[:private] %>
                   <span class="label label-private">Private</span>
@@ -79,8 +80,8 @@
             <% end %>
             <% if !repos.nil? && !repos.empty? %>
             <div class="repo-actions">
-              <button type="button" class="btn btn-success" onClick="javascript:validateRepoSelectionPulls()">Show Pull Requests</button>
-              <button type="button" class="btn btn-success" onClick="javascript:validateRepoSelectionStats()">Show Statistics </button>
+              <button type="button" class="btn btn-success" onClick="javascript:storeSelectionAndRedirect('/pulls')">Show Pull Requests</button>
+              <button type="button" class="btn btn-success" onClick="javascript:storeSelectionAndRedirect('/stats')">Show Statistics </button>
               <div id="uncheckedMessage" style="display:none" class="repo-error">Please select at least one repository</div>
             </div><!-- end of actions -->
             <% end %>

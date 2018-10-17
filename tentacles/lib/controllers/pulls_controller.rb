@@ -29,10 +29,10 @@ module Controllers
       logout unless current_user
     end
 
-    post '/pulls' do
+    get '/pulls' do
       pull_requests_groups = []
 
-      params[:repos].each do |repo|
+      selected_repos!.each do |repo|
         next unless repo && !repo.empty?
         issues = find_issues(repo)
         pull_requests_groups << issues unless !issues || issues.empty?

@@ -134,26 +134,14 @@ $.ready().then(function() {
 
   /*
    * Verify if some repository is selected
-   * Submit the form and move on /pulls.
+   * Submit the form to store selection
+   * Redirect to destination
    */
-  validateRepoSelectionPulls = function() {
+  storeSelectionAndRedirect = function(destination) {
     if (checkRepoCheckboxes() == false) {
       displayNoRepoSelectedWarning();
     } else {
-      document.forms["repoForm"].action="/pulls";
-      document.forms["repoForm"].submit();
-    }
-  }
-
-  /*
-   * Verify if some repository is selected.
-   * Submit the form and and move on /stats.
-   */
-  validateRepoSelectionStats = function() {
-    if (checkRepoCheckboxes() == false) {
-      displayNoRepoSelectedWarning();
-    } else {
-      document.forms["repoForm"].action="/stats";
+      document.forms["repoForm"].action="/repositories/selection?redirect=" + destination;
       document.forms["repoForm"].submit();
     }
   }
