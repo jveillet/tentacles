@@ -71,7 +71,7 @@ module Controllers
         repos: repos,
         pull_request: pull_requests_groups,
         pull_requests_per_repo: pr_per_repo
-      }
+      }, layout: :tentacles_layout
     end
   end
 end

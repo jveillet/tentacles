@@ -54,7 +54,7 @@ module Controllers
         user: current_user,
         repos: repos,
         selected_repos: selected_repos
-      }
+      }, layout: :tentacles_layout
     end
 
     post '/repositories/selection' do

@@ -56,7 +56,19 @@
   color: #ffffff;
 }
 .logo {
+  float:left;
   font-size: 3em;
+}
+.menu {
+  float: left;
+  margin-left: 10em;
+  margin-top: 0.8em;
+  background-color: inherit;
+  border-width: 0px;
+}
+.menu a{
+  margin-right: 2em;
+  font-weight: bold;
 }
 .user {
   float: right;

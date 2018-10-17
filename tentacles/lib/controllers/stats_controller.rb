@@ -64,7 +64,7 @@ module Controllers
         user: current_user,
         average: average_hash,
         count: count_hash
-      }
+      }, layout: :tentacles_layout
     end
   end
 end
