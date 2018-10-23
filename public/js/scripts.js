@@ -179,4 +179,33 @@ $.ready().then(function() {
     return element.innerHTML;
   });
 
+  // Check asynchronously the commits statuses and update the UI.
+  var statuses = $$(".pr-check").map(function(element) {
+    var repo = element.getAttribute('data-repo');
+    var sha = element.id;
+    statusesUrl = 'http://localhost:4011/statuses?repo='+repo+'&sha='+sha;
+    fetch(statusesUrl)
+    .then((resp) => resp.json())
+    .then(function(response) {
+      if(response.state == 'success') {
+        element.childNodes[1].classList.toggle("icon-status-success");
+        element.childNodes[1].title = "All checks have passed";
+        element.childNodes[1].classList.toggle("icon-status-default");
+      }
+      else if(response.state == 'failure' || response.state == 'error') {
+        element.childNodes[1].classList.toggle("icon-status-failure");
+        element.childNodes[1].title = "All checks have failed";
+        element.childNodes[1].classList.toggle("icon-status-default");
+      }
+      else if(response.state == 'pending') {
+        element.childNodes[1].classList.toggle("icon-status-pending");
+        element.childNodes[1].title = "All checks pending..";
+        element.childNodes[1].classList.toggle("icon-status-default");
+      }
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  });
+
 });

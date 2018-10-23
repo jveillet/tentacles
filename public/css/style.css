@@ -459,3 +459,118 @@ input[type = text] {
   font-size: 1.5vw;
   color: #4e4e4e;
 }
+
+/* PR cards */
+
+.container-pr {
+  padding: 1em;
+}
+
+.pr-repo-item {
+  margin-bottom: 1em;
+}
+
+.pr-cards {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.pr-card {
+  border: 1px solid #e1e4e8;
+  padding: 1em;
+  border-radius: .3em;
+  width: 350px;
+  height: 120px;
+  font-size: .8em;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, .2);
+  margin-right: .5em;
+}
+
+.pr-card-header {
+  font-size: 1.1em;
+  margin-bottom: 1em;
+  font-weight: 600;
+}
+
+.pr-card-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pr-card-item {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.pr-card-branch-name {
+  font-weight: 600;
+  white-space: normal;
+  white-space: pre-wrap;
+  width: 160px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.pr-card-status {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.pr-card-status-item {
+  background-color: #363e46;
+  padding: .5em;
+}
+
+.pr-card-branch-origin {
+  font-size: 1.1em;
+  color: #555555;
+}
+
+.pr-number {
+  border-radius: .5em 0 0 .5em;
+}
+
+.pr-number,
+.pr-number a:link,
+.pr-number a:visited{
+  color: #ffffff;
+}
+
+.pr-check {
+  border-radius: 0 .5em .5em 0;
+  padding: .65em;
+}
+
+.icon-status {
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 100%;
+}
+
+.icon-status-default {
+  color: #ffffff;
+  background-color: #ffffff;
+}
+
+.icon-status-success {
+  color: #2db04e;
+  background-color: #2db04e;
+}
+
+.icon-status-failure {
+  color: #d12938;
+  background-color: #d12938;
+}
+
+.icon-status-pending {
+  color: #d76202;
+  background-color: #d76202;
+}

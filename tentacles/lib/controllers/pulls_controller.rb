@@ -38,7 +38,7 @@ module Controllers
         pull_requests_groups << issues unless !issues || issues.empty?
       end
 
-      erb :pulls, locals: {
+      erb :pulls_new, locals: {
         pull_request: pull_requests_groups,
         user: current_user
       }, layout: :tentacles_layout

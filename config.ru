@@ -19,18 +19,16 @@ $LOAD_PATH.unshift(
   File.join(File.dirname(__FILE__), 'tentacles/lib')
 )
 
-require 'controllers/application_controller'
-require 'controllers/authentication_controller'
-require 'controllers/dashboard_controller'
-require 'controllers/repositories_controller'
-require 'controllers/pulls_controller'
-require 'controllers/stats_controller'
+
+files = Dir[File.dirname(__FILE__) + '/tentacles/lib/controllers/*']
+files.each { |file| require file }
 
 use Controllers::AuthenticationController
 use Controllers::DashboardController
 use Controllers::RepositoriesController
 use Controllers::PullsController
 use Controllers::StatsController
+use Controllers::StatusesController
 use Rack::Deflater
 
 run Controllers::ApplicationController

@@ -1,0 +1,39 @@
+<div class="container-pr">
+  <div class="pr-cards">
+    <% pull_request.each do |pr| %>
+    <% next if pr.nil? || pr.empty? %>
+    <% pr.each do |req| %>
+    <% next if req.nil? || req.empty? %>
+      <div class="pr-card">
+        <div class="pr-card-header">
+          <span><a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').first %></a></span>
+          <span>/</span>
+          <span><a href="<%= pr[0][:head][:repo][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').last %></a></span>
+          <% if pr[0][:head][:repo][:private] %>
+            <span class="label label-private">Private</span>
+          <% end %>
+        </div><!-- end of pr-card-header -->
+        <div class = "pr-card-body">
+          <div class="pr-card-item pr-card-icon">
+            <img src="img/git-pr.png" alt="Pull Request" style="width: 18px;height: 18px">
+          </div>
+          <div class="pr-card-item pr-card-branch">
+            <% if req[:title].size > 50 %>
+              <div class="pr-card-branch-name"><%= req[:title][0..50] %>...</div>
+            <% else %>
+              <div class="pr-card-branch-name"><%= req[:title] %></div>
+            <% end %>
+            <div class="pr-card-branch-origin css-truncate expandable"><%= req[:base][:ref] %></div>
+          </div>
+          <div class="pr-card-item pr-card-status">
+            <div class="pr-card-status-item pr-number"><a href="<%= req[:html_url] %>" target="_new">#<%= req[:number] %></a></div>
+            <div class="pr-card-status-item pr-check" id="<%= req[:head][:sha] %>" data-repo="<%= pr[0][:head][:repo][:full_name] %>">
+              <div title="Check Status Unknown" class="icon-status icon-status-default">&nbsp;</div>
+            </div>
+          </div>
+        </div><!-- end of pr-card-body -->
+      </div> <!-- end of pr-card -->
+    <% end %>
+    <% end %>
+  </div><!-- end of pr-cards -->
+</div><!-- end of container-pr -->
