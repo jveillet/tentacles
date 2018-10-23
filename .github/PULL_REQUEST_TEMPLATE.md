@@ -1,5 +1,3 @@
-<!--- Provide a general summary of your changes in the Title above -->
-
 ## Description
 <!--- Describe your changes in detail -->
 
@@ -24,10 +22,12 @@ reproduce -->
 ## Types of changes
 <!--- What types of changes does your code introduce? Put an `x` in all the
 boxes that apply: -->
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to
+- [ ] New feature (a non-breaking change which adds functionality)
+- [ ] Improvement (anon-breaking change which modifies functionality)
+- [ ] Breaking change (a fix or feature that would cause existing functionality to
   change)
+- [ ] Bug fix (a non-breaking change which fixes an issue)
+- [ ] Maintenance task (such as Documentation, Github templates,..)
 
 ## Checklist:
 <!--- Go over all the following points, and put an `x` in all the boxes that
