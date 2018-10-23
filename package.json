@@ -21,13 +21,17 @@
   },
   "homepage": "https://github.com/jveillet/tentacles#readme",
   "dependencies": {
-    "postcss": "^7.0.5",
-    "autoprefixer": "^9.2.0",
-    "gulp": "^v4.0.0",
-    "gulp-cssnano": "^2.1.3",
-    "gulp-postcss": "^8.0.0",
-    "gulp-rename": "^1.4.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-minify": "^3.1.0"
+    "postcss": ">=7.0.5",
+    "autoprefixer": ">=9.2.0",
+    "gulp": ">=4.0.0",
+    "gulp-cssnano": ">=2.1.3",
+    "gulp-postcss": ">=8.0.0",
+    "gulp-rename": ">=1.4.0",
+    "gulp-sourcemaps": ">=2.6.4",
+    "gulp-minify": ">=3.1.0"
+  },
+  "devDependencies": {
+    "stylelint": ">=9.5.0",
+    "gulp-stylelint": ">=7.0.0"
   }
 }

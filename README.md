@@ -18,6 +18,11 @@ PORT=<Your-Webserver-port>
 GH_CLIENT_ID=<Your-Github-connected-app-client-Id>
 GH_CLIENT_SECRET=<Your-Github-connected-app-client-secret>
 GH_CALLBACK_URL=<Your-Tentacles-OAuth-Callback-URL>
+REDIS_URL=<Your-redis-instance_url>
+GITHUB_OAUTH_URL='https://github.com/login/oauth/access_token'
+SESSION_SECRET=<Random-generated-string>
+RACK_ENV=<Your-rack-environment>
+APP_ENV=<Same-as-rack-env>
 ```
 
 ## Installation (using Docker)
@@ -31,7 +36,7 @@ $ docker build
 
 ## Usage
 
-## Build Assets
+### Build Assets
 
 ```bash
 $ docker-compose run --rm web gulp build
@@ -41,7 +46,13 @@ $ # Or for JS only
 $ docker-compose run --rm web gulp build:js
 ```
 
-## Launch Server
+### Linters
+```bash
+$ # Lint the CSS using Stylelint
+$ docker-compose run --rm web gulp lint:css
+```
+
+### Launch Server
 
 ```bash
 $ docker-compose run --rm web
