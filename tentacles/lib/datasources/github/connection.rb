@@ -20,7 +20,7 @@ module Datasources
 
       def connect(access_token)
         @connect ||= Octokit::Client.new(
-          access_token: access_token
+          :access_token => access_token
         )
       end
     end

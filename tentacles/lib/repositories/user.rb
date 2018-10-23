@@ -13,6 +13,7 @@ module Repositories
     USERS_CACHE = 7200 # 2h
 
     def find_by_access_token(access_token)
+      return unless access_token
       key = cache_key('user_by_access_token', access_token)
       load_from_cache(key, ttl: USERS_CACHE) do
         users.find_by_access_token(access_token)

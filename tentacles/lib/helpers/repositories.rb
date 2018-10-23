@@ -92,7 +92,7 @@ module Helpers
       end
       count_hash
     end
-    
+
     def selected_repos!
       redirect to('/repositories') unless cookies[:repos]
       selected_repos

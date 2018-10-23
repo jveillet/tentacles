@@ -34,16 +34,13 @@ module Controllers
 
       selected_repos!.each do |repo|
         next unless repo && !repo.empty?
-        issues = find_issues(repo)
+        issues = github_issues.find_issues_by_repo(repo, access_token: access_token)
         pull_requests_groups << issues unless !issues || issues.empty?
       end
 
-      pr_per_repo = count_pull_requests_per_repo(pull_requests_groups)
-
       erb :pulls, locals: {
         pull_request: pull_requests_groups,
-        user: current_user,
-        pull_requests_per_repo: pr_per_repo
+        user: current_user
       }, layout: :tentacles_layout
     end
   end
