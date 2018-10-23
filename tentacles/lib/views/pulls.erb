@@ -17,6 +17,7 @@
       <% next if pr.nil? || pr.empty? %>
       <div class="pr-repo">
         <div class="pr-repo__link">
+          <div class="pr-repo__count"><%= pr.count %></div>
           <a href="<%= pr[0][:head][:repo][:owner][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').first %></a>
           <span class="path-divider">/</span>
           <a href="<%= pr[0][:head][:repo][:html_url] %>" class="link-blue"><%= pr[0][:head][:repo][:full_name].split('/').last %></a>

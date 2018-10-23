@@ -5,31 +5,36 @@
 */
 
 /** Home page **/
+
 .session-authentication {
-  background-color: #588B8B;
+  background-color: #588b8b;
 }
+
 .session {
   margin-top: 2.2em;
 }
+
 .session-form {
-    padding: 2em;
-    font-size: 1em;
-    background-color: #fff;
-    border: 0.1em solid #d8dee2;
-    border-radius: 0.5em 0.5em 0.5em 0.5em;
+  background-color: #ffffff;
+  border-radius: .5em;
+  border: .1em solid #d8dee2;
+  font-size: 1em;
+  padding: 2em;
 }
+
 .session-header {
-    margin-bottom: 1em;
-    text-align: center;
-    text-shadow: none;
-    background-color: transparent;
-    border: 0;
+  background-color: transparent;
+  border: 0;
+  margin-bottom: 1em;
+  text-align: center;
+  text-shadow: none;
 }
+
 .session-header h1 {
-    font-size: 2em;
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    color: #ffffff;
+  color: #ffffff;
+  font-size: 2em;
+  font-weight: 300;
+  letter-spacing: -.01em;
 }
 
 .lead {
@@ -39,11 +44,13 @@
 /** General Repositories **/
 
 /** Mobile first styles **/
+
 .container {
   width: auto;
   padding-right: .5em;
   padding-left: .5em;
 }
+
 .topbar {
   line-height: 1.8;
   margin-bottom: 1.5rem;
@@ -51,133 +58,181 @@
   color: #ffffff;
   overflow: auto;
 }
-.topbar a:link,
-.topbar a:visited {
-  color: #ffffff;
-}
-.logo {
-  float:left;
-  font-size: 3em;
-}
-.menu {
-  float: left;
-  margin-left: 10em;
-  margin-top: 0.8em;
-  background-color: inherit;
-  border-width: 0px;
-}
+
 .menu a{
   margin-right: 2em;
   font-weight: bold;
 }
+
+.topbar a:link,
+.topbar a:visited {
+  color: #ffffff;
+}
+
+.logo {
+  float: left;
+  font-size: 3em;
+}
+
+.menu {
+  float: left;
+  margin-left: 10em;
+  margin-top: .8em;
+  background-color: inherit;
+  border-width: 0;
+}
+
 .user {
   float: right;
   margin-right: 1em;
   margin-top: .2em;
 }
+
 .user-card {
   line-height: 1.2;
 }
+
 .user-fullname {
   display: none;
-  transition: all ease 0.8s;
+  transition: all ease .8s;
 }
+
 .user-login {
   display: none;
-  transition: all ease 0.8s;
+  transition: all ease .8s;
 }
+
 .avatar-small {
   border-radius: 50%;
-  border: 0.2em solid #5d3c7a;
+  border: .2em solid #5d3c7a;
 }
+
 .user-avatar {
   float: left;
 }
+
 .text-white {
   color: #ffffff;
 }
+
 .link-blue {
   color: #a86eb2!important;
 }
+
 .link-white {
   color: #ffffff!important;
 }
 
 /** Desktop styles **/
 @media all and (min-width: 65em) {
+
   .topbar {
     line-height: 1.8;
     margin-bottom: 1.5rem;
     background-image: linear-gradient(to right,#5d3c7b 30%,#aa70b5,#875390);
     color: #ffffff;
   }
+
   .logo {
     font-size: 1.8em;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
+    text-transform: uppercase;
+    letter-spacing: .1em;
   }
+
   .user {
     float: right;
     margin-right: 1em;
     margin-top: .5rem;
   }
+
   .user-fullname {
     margin-left: .5em;
     display: inline;
   }
+
   .user-login {
     margin-left: .5em;
     display: inline;
   }
+
   .container {
-    width: 980px;
+    width: 61.25em;
     margin-right: auto;
     margin-left: auto;
   }
 }
 
 /** Repositories **/
+
 .select {
   font-size: 1.1em;
 }
+
 .lead-align {
   padding-left: .625em;
   padding-right: .625em;
 }
+
 .repo-actions {
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
 .repo-filters ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .repo-filters {
   margin-top: 2em;
   margin-bottom: 2em;
 }
+
 .repo-filter__list {
   /* On small screens, we are no longer using row direction but column */
   flex-direction: column;
   justify-content: flex-start;
 }
+
 .repo-filter__item {
   margin-right: auto;
   margin-bottom: 1em;
 }
+
 .repo-filter__item .selected {
   border-bottom: .25em solid #a46bae;
 }
+
 hr:last-child {
   display: none !important;
 }
+
 .back {
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
+.pr-repo__link {
+  position: relative;
+}
+
+.pr-repo__count {
+  width: 2em;
+  background-color: #a46bae;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  height: 2em;
+  margin-top: -.8em;
+  padding-top: .2em;
+  right: 0;
+}
+
 @media all and (min-width: 47em) {
+
   .repo-filter__list {
     display: flex;
     flex-flow: row wrap;
@@ -186,6 +241,7 @@ hr:last-child {
     align-items: center;
     justify-content: space-around;
   }
+
   .repo-filter__item {
     margin-right: 0;
   }
@@ -194,78 +250,91 @@ hr:last-child {
 .repo-error {
   margin: 1em;
   padding: 1em;
-  color: #BA5108;
+  color: #ba5108;
   font-weight: bold;
-  background-color: #F9E2D2;
-  border-radius: 0.5em;
-  -webkit-animation: fadeinout 1s linear 1 forwards;
+  background-color: #f9e2d2;
+  border-radius: .5em;
   animation: fadeinout 6s linear 1 forwards;
 }
 
-@-webkit-keyframes fadeinout {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 @keyframes fadeinout {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
+
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 /** Pull requests **/
 
-.pr-repo__link a:link, a:visited {
+.pr-repo__link a:link,
+.pr-repo__link a:visited {
   font-size: 1.5em;
 }
+
 .pr-list {
   padding-left: 1em;
   padding-right: 1em;
 }
+
 .pr-item {
   margin-top: 3em;
   margin-bottom: 3em;
 }
+
 .pr-title {
   font-size: 1.1em;
   font-weight: 600;
 }
+
 .pr-details {
   font-size: .9em;
 }
+
 .commit-ref {
   position: relative;
   display: inline-block;
-  padding: 0 5px;
-  font: 0.85em/2 Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  padding: 0 .3125em;
+  font: .85em/2 Consolas, "Liberation Mono", Menlo, Courier, monospace;
   color: #336479;
   white-space: nowrap;
   background-color: #e8f0f8;
-  border-radius: 3px;
+  border-radius: .1875em;
 }
+
 .labels {
   position: relative;
 }
+
 .label {
   display: inline-block;
-  padding: 3px 4px;
-  font-size: 12px;
+  padding: .5em;
+  font-size: .85em;
   font-weight: 600;
   line-height: 1;
-  color: #fff;
-  border-radius: 2px;
-  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.12);
+  color: #ffffff;
+  border-radius: .125em;
+  box-shadow: inset 0 -.0625em 0 rgba(0, 0, 0, .12);
 }
+
 .label-private {
   font-weight: normal;
   color: #4c4a42;
   background-color: #ffefc6;
 }
+
 .path-divider {
-  margin: 0 0.25em;
+  margin: 0 .25em;
   font-size: 1.2em;
 }
+
 .icon-comment {
   float: left;
   margin-right: .5em;
@@ -274,21 +343,23 @@ hr:last-child {
 
 /** Search **/
 
-input[type=text] {
-  border: 1px solid lightgrey;
+input[type = text] {
+  border: .0625em solid #d3d3d3;
   display: block;
   font-size: 100%;
 }
+
 .large-input {
   height: 2.5em;
   width: 90%;
   padding: .5em;
 }
+
 .search {
-  background: url(../img/icon-search.png) no-repeat right center;
-  background: url(../img/icon-search.svg) no-repeat 98% center,
-  linear-gradient(transparent, transparent);
-  background-size: auto 20px;
+  background: url("../img/icon-search.png") no-repeat right center;
+  background: url("../img/icon-search.svg") no-repeat 98% center,
+    linear-gradient(transparent, transparent);
+  background-size: auto 1.25em;
   padding-right: 2.5em;
 }
 
@@ -298,9 +369,11 @@ input[type=text] {
   text-align: center;
   margin: 0 auto;
 }
+
 .error-title {
   font-size: 2.5em;
 }
+
 .error-description {
   font-size: 1em;
 }
@@ -309,11 +382,13 @@ input[type=text] {
 
 .u-hide {
   display: none;
-  transition: all ease 0.8s;
+  transition: all ease .8s;
 }
+
 .u-green-bg {
-  background-color: #588B8B;
+  background-color: #588b8b;
 }
+
 .u-white-color {
   color: #ffffff;
 }
@@ -323,7 +398,7 @@ input[type=text] {
 .dashboard {
   font-size: 5.5vw;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -331,7 +406,7 @@ input[type=text] {
 }
 
 .db-pullrequest {
-  box-shadow: 0.1em 0.1em 0.05em grey;
+  box-shadow: .1em .1em .05em #808080;
   position: relative;
   text-align: center;
   width: 9vw;
@@ -343,20 +418,20 @@ input[type=text] {
 }
 
 .db-pr-medium {
-  background-color: #F76A19;
+  background-color: #f76a19;
 }
 
 .db-pr-high {
-  background-color: #9A031E;
+  background-color: #9a031e;
 }
 
 .db-pr-critical {
-  background-color: #0C120C;
+  background-color: #0c120c;
 }
 
 .db-repo {
   font-size: 2.5vw;
-  color: #4E4E4E;
+  color: #4e4e4e;
 }
 
 /** Stats **/
@@ -364,7 +439,7 @@ input[type=text] {
 .stats {
   font-size: 3.5vw;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -372,15 +447,15 @@ input[type=text] {
 }
 
 .stats-average-time {
-  box-shadow: 0.05em 0.05em 0.01em grey;
+  box-shadow: .05em .05em .01em #808080;
   position: relative;
   text-align: center;
   width: 6vw;
   height: 6vw;
-  background-color: #4E4E4E;
+  background-color: #4e4e4e;
 }
 
 .stats-repo {
   font-size: 1.5vw;
-  color: #4E4E4E;
+  color: #4e4e4e;
 }
