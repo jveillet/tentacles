@@ -10,6 +10,7 @@ module Utils
   module Cache
     DEFAULT_TTL = 25 * 60 # 25 minutes
     CACHE_TTL = Integer(ENV['CACHE_TTL'] || DEFAULT_TTL)
+    CACHE_PREXIX = ENV['CACHE_PREXIX'] || 'tentacles'
 
     ##
     # Load value from cache.
@@ -63,9 +64,9 @@ module Utils
     # @result [String] SHA256 of the key + attributes
     #
     def cache_key(key, *attributes)
-      prefix = "#{ENV['CACHE_PREFIX']}:#{key}"
-      args = attributes.join('-')
-      "#{prefix}:#{Digest::SHA256.hexdigest(args)}"
+      prefix = "#{CACHE_PREXIX}:#{key}"
+      args = attributes.join(':')
+      "#{prefix}:#{args}"
     end
 
     private

@@ -3,6 +3,8 @@
 require 'sinatra/base'
 require 'repositories/user'
 require_relative 'application_controller'
+require 'dotenv'
+require 'octokit'
 
 module Controllers
   ##
@@ -20,9 +22,9 @@ module Controllers
     get '/authentication/callback' do
       session_code = (request.env['rack.request.query_hash'] || {})['code']
       error!('Unauthorized', 401) unless session_code
-      access_token = users.authorize_with_code(session_code)
+      result = Octokit.exchange_code_for_token(session_code, ENV['GH_CLIENT_ID'], ENV['GH_CLIENT_SECRET'])
 
-      session[:access_token] = access_token
+      session[:access_token] = result[:access_token]
 
       redirect '/repositories'
     end

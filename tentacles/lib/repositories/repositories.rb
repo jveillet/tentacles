@@ -13,7 +13,7 @@ module Repositories
 
     def find_repositories_by_user(user, visibility_filter: DEFAULT_VISIBILITY,
                                   access_token:)
-      key = cache_key('repositories_by_user', user.login, visibility_filter)
+      key = cache_key('repositories', user.login, visibility_filter)
       load_from_cache(key) do
         repositories.find_repositories(
           visibility_filter,
