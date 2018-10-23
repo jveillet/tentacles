@@ -171,4 +171,12 @@ $.ready().then(function() {
     uncheckedText.style.display = "block";
   }
 
+
+  // Loop over the dates to print a more friendly date like "1 day ago"
+  var dates = $$(".pr-details__date").map(function(element) {
+    var momentDate = moment(element.innerText).fromNow();
+    element.innerHTML = momentDate;
+    return element.innerHTML;
+  });
+
 });
