@@ -2,6 +2,7 @@
 
 require 'helpers/users'
 require 'helpers/repositories'
+require 'models/repository'
 require 'repositories/repositories'
 require 'repositories/issues'
 require_relative 'application_controller'
@@ -35,12 +36,6 @@ module Controllers
                  end
         result
       end
-
-      def find_issues_key(repo_key)
-        github_issues.find_issues_by_repo(
-          repo_key, access_token: access_token
-        )
-      end
     end
 
     before do
@@ -51,26 +46,13 @@ module Controllers
       display_filter = visibility(params)
       pull_requests_groups = []
 
-      repos = repositories.find_repositories_by_user(
-        current_user,
-        visibility_filter: display_filter,
-        access_token: access_token
-      )
-
-      repos.each do |repo|
-        next unless repo && !repo.empty?
-        repo_key = repo[:id]
-        issues = find_issues_key(repo_key)
-        pull_requests_groups << issues unless !issues || issues.empty?
-      end
-
-      pr_per_repo = count_pull_requests_per_repo(pull_requests_groups)
+      repos = map_repos(selected_repos!).select { |repo|
+        repo.pull_requests_count > 0 }.sort { |repo_a, repo_b|
+          repo_b.pull_requests_count <=> repo_a.pull_requests_count }
 
       erb :dashboard, locals: {
         user: current_user,
-        repos: repos,
-        pull_request: pull_requests_groups,
-        pull_requests_per_repo: pr_per_repo
+        repos: repos
       }, layout: :tentacles_layout
     end
   end

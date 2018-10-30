@@ -1,38 +1,18 @@
-<div class="container">
-  <br>
-  <div class="dashboard">
-    <% pull_requests_per_repo.each do |repo_name, pull_requests_count| %>
-    <table>
-    <thead>
-      <tr>
-        <td>
-          <% if pull_requests_count == 1 %>
-          <p class="db-pullrequest db-pr-low"><%= pull_requests_count %></p>
-        </td>
-        <td>
-          <% elsif pull_requests_count <= 3 %>
-          <p class="db-pullrequest db-pr-medium"><%= pull_requests_count %></p>
-        </td>
-        <td>
-          <% elsif pull_requests_count <= 5 %>
-          <p class="db-pullrequest db-pr-high"><%= pull_requests_count %></p>
-        </td>
-        <td>
-          <% else %>
-          <p class="db-pullrequest db-pr-critical"><%= pull_requests_count %></p>
-        </td>
-          <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-        <p class="db-repo"><%= repo_name %></p>
-      </td>
-      </tr>
-    </tbody>
+<div class="dashboard grey">
+  <% repos.each do |repo| %>
+  <div class="dashboard-repo">
+    <div class="repo-name"><%= repo.name %></div>
+    <div class="pr-count"><%= repo.pull_requests_count %></div> Pull request(s)
+    <div class="pull-request-separator"></div>
+    <% repo.pull_requests.each do |pull_request| %>
+      <div class="pull-request seniority-<%= pull_request.seniority %>">
+        <img src="<%= pull_request.author_thumbnail %>" class="pull-request-avatar"/>
+        <%= pull_request.shorten_title %>
+        <span class="pull-request-age"><%= pull_request.age %></span>
+      </div>
     <% end %>
-    </table>
   </div>
+  <% end %>
+  </table>
 </div>
-  <!-- end of dashboard -->
+<!-- end of dashboard -->

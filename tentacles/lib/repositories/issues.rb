@@ -22,6 +22,16 @@ module Repositories
       end
     end
 
+    def find_raw_issues_by_repo(repository_name, access_token:)
+      key = cache_key('raw_issues', repository_name)
+      load_from_cache(key, ttl: ISSUES_TTL) do
+        github.find_raw_issues_by_repo(
+          repository_name,
+          access_token: access_token
+        )
+      end
+    end
+
     def find_closed_issues_by_repo(repository_name, access_token:)
       key = cache_key('closed_issues', repository_name)
       load_from_cache(key, ttl: ISSUES_TTL) do

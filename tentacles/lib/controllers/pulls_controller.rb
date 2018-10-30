@@ -34,7 +34,7 @@ module Controllers
 
       selected_repos!.each do |repo|
         next unless repo && !repo.empty?
-        issues = github_issues.find_issues_by_repo(repo, access_token: access_token)
+        issues = github_issues.find_raw_issues_by_repo(repo, access_token: access_token)
         pull_requests_groups << issues unless !issues || issues.empty?
       end
 

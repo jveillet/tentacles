@@ -31,6 +31,18 @@ module Helpers
       pull_requests_per_repo
     end
 
+    def pr_to_hash(pull_requests_groups)
+      pull_requests_per_repo = {}
+      pull_requests_groups.each do |pull_requests|
+        pull_requests.each do |pull_request|
+          repo_name = pull_request.to_h.dig(:head, :repo, :name)
+          pull_requests_per_repo[repo_name] ||= []
+          pull_requests_per_repo[repo_name] << pull_request
+        end
+      end
+      pull_requests_per_repo
+    end
+
     def find_closed_issues_and_comments_by_repo(repo)
       issues = github_issues.find_closed_issues_by_repo(
         repo, access_token: access_token
@@ -91,6 +103,13 @@ module Helpers
           find_repo_and_total_number_of_comments(pull_requests)[1]
       end
       count_hash
+    end
+    
+    def map_repos(repos)
+      repos.map do |repo_key|
+        Models::Repository.new(repo_key,
+                               find_issues(repo_key))
+      end
     end
 
     def selected_repos!

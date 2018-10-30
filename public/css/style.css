@@ -50,10 +50,71 @@
   padding-right: .5em;
   padding-left: .5em;
 }
+.dashboard{
+  width: 100%;
+}
 
+.dashboard-repo{
+  background-color: white;
+  width: 350px;
+  color: grey;
+  font-size: medium;
+  margin-right: 1em;
+  margin-bottom: 1.5em;
+  box-shadow: 0 4px 20px 0 rgba(56, 36, 74, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0);
+  text-align: center;
+}
+.pull-request{
+  font-weight: bold;
+  border-bottom: 1px solid #ba99bf;
+  width: 100%;
+  font-size: 0.8em;
+  text-align: left;
+  padding-left: 0.2em;
+  height: 30px;
+}
+.pull-request-age{
+  float:right;
+  margin-right: 5px;
+  font-size: 1.2em;
+}
+.seniority-big-bang{
+    color: red;
+}
+.seniority-dynosaur{
+    color: red;
+}
+.seniority-old{
+  color: purple;
+}
+.pull-request-avatar{
+  width: 27px;
+  height: 27px;
+  float: left;
+  clear: both;
+  margin-right: 5px;
+  border-radius: 20%;
+}
+.pull-request-separator{
+    width: 100%;
+    height: 3px;
+    background-image: linear-gradient(to right,#5d3c7b 20%,#da91e8);
+    margin-bottom: 5px;
+}
+.grey{
+  background-color: #f7f5f5;
+}
+
+.repo-name{
+ color: #5d3c7a;
+ font-weight: bold;
+ font-size: x-large;
+}
+.pr-count{
+  color: #548ac5;
+  font-size: 3em;
+}
 .topbar {
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
   background-image: linear-gradient(to right,#5d3c7b 30%,#aa70b5,#875390);
   color: #ffffff;
   overflow: auto;
@@ -128,7 +189,6 @@
 
   .topbar {
     line-height: 1.8;
-    margin-bottom: 1.5rem;
     background-image: linear-gradient(to right,#5d3c7b 30%,#aa70b5,#875390);
     color: #ffffff;
   }
@@ -403,6 +463,7 @@ input[type = text] {
   flex-flow: row wrap;
   justify-content: center;
   justify-content: space-around;
+  padding: 0.2em;
 }
 
 .db-pullrequest {
