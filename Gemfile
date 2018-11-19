@@ -21,5 +21,6 @@ group :development do
   gem 'pry', '~> 0.11.3'
   gem 'reek', '~> 5.2.0'
   gem 'rubocop', '~> 0.59.2'
+  gem 'rspec', '~> 3.8.0'
   gem 'shotgun', '~> 0.9.2'
 end

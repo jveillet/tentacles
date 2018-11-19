@@ -1,0 +1,53 @@
+<div class="container">
+  <br>
+  <div class="diff">
+    <div class="flash">
+        The page allows you to target the difference between 2 branches. The results reflects the commits that are on the left branch but not on the right branch. The diff is based on the commit messages, not the checksum like would do a classic git diff/log.
+    </div>
+    <form action="" method="get" class="form-inline">
+      <div class="form-group mb-2">
+        <select name="repo">
+        <% repos.each do |repo| %>
+          <option value="<%= repo.full_name%>"><%= repo.name %></option>
+        <% end %>
+        </select>
+      </div>
+      <div class="form-group mb-2">
+        <label for="left_branch">Left branch</label>
+        <input id="left_branch" type="text" name="left_branch" placeholder="qa" class="form-control">
+      </div>
+      <div class="form-group mb-2">
+        <label for="right_branch">Right branch</label>
+        <input id="right_branch" type="text" name="right_branch" placeholder="staging" class="form-control">
+      </div>
+      <input type="submit" value="Diff !" class="btn btn-primary">
+    </form>
+    <br />
+    <div class="Box">
+      <div>
+        <% commits.each do |commit| %>
+          <div class="Box-row">
+            <span class=""commit_name">
+              <a href="<%= commit.link %>">
+                <span class="css-truncate expandable">
+                  <span class="branch-ref css-truncate-target"><%= commit.message %></span>
+                </span>
+              </a>
+            </span>
+            <div class="text-small text-gray-light"><%= commit.date %></div>
+            <% unless commit.similars.to_a.empty? %>
+              <div class="text-small text-gray-light"><strong>Similar in right branch : </strong>
+                <ul>
+                <% commit.similars.to_a.each do |similar| %>
+                  <li><%= similar %></li>
+                <% end %>
+                </ul>
+              </div>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- end of dashboard -->

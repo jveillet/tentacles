@@ -123,6 +123,14 @@
   color: #ffffff!important;
 }
 
+.diff .css-truncate .css-truncate-target{
+  max-width:600px;
+}
+
+.Box-row ul {
+  padding-left: 40px;
+}
+
 /** Desktop styles **/
 @media all and (min-width: 65em) {
 
