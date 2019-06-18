@@ -19,7 +19,7 @@ gem 'sinatra-contrib', '~> 2.0.4'
 group :development do
   gem 'foreman', '~> 0.85.0'
   gem 'pry', '~> 0.11.3'
-  gem 'reek', '~> 5.2.0'
+  gem 'reek', '~> 5.4.0'
   gem 'rubocop', '~> 0.59.2'
   gem 'shotgun', '~> 0.9.2'
 end
