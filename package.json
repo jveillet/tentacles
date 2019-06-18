@@ -22,7 +22,7 @@
   "homepage": "https://github.com/jveillet/tentacles#readme",
   "dependencies": {
     "postcss": ">=7.0.17",
-    "autoprefixer": ">=9.2.0",
+    "autoprefixer": ">=9.6.0",
     "gulp": ">=4.0.0",
     "gulp-cssnano": ">=2.1.3",
     "gulp-postcss": ">=8.0.0",
