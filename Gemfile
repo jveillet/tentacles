@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 gem 'connection_pool', '~> 2.2.2'
-gem 'dotenv', '~> 2.5.0'
+gem 'dotenv', '~> 2.7.2'
 gem 'json', '~> 2.1.0'
 gem 'octokit', '~> 4.13.0'
 gem 'puma', '~> 3.12.0'
