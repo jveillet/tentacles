@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "stylelint": ">=9.10.1",
-    "gulp-stylelint": ">=7.0.0"
+    "gulp-stylelint": ">=8.0.0"
   }
 }
