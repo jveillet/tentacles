@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.6.1'
 
 gem 'connection_pool', '~> 2.2.2'
 gem 'dotenv', '~> 2.7.2'
