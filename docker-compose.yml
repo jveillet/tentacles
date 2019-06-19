@@ -7,9 +7,12 @@ services:
       - "6389:6379"
 
   web:
-    build: .
+    build:
+      context: .
+      args:
+        BUNDLER_OPTS:
     ports:
       - "4011:3000"
     volumes:
-      - .:/home/tentacles/src/tentacles/
+      - "${PWD}:/home/tentacles/app"
     command: foreman start web

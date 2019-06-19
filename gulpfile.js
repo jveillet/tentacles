@@ -43,10 +43,10 @@ gulp.task('lint:css', function lintCssTask() {
   return gulp
     .src(['public/css/style.css', '!public/css/**/*.css.map', '!public/css/**/*.min.css'])
     .pipe(gulpStylelint({
-    reporters: [
-      {formatter: 'verbose', console: true}
-    ],
-    debug: true,
-    failAfterError: true
-  }));
+      reporters: [
+        {formatter: 'verbose', console: true}
+      ],
+      debug: true,
+      failAfterError: true
+    }));
 });
