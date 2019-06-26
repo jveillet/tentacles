@@ -20,6 +20,6 @@ group :development do
   gem 'foreman', '~> 0.85.0'
   gem 'pry', '~> 0.12.2'
   gem 'reek', '~> 5.4.0'
-  gem 'rubocop', '~> 0.71.0'
+  gem 'rubocop', '~> 0.72.0'
   gem 'shotgun', '~> 0.9.2'
 end
