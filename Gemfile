@@ -12,7 +12,7 @@ gem 'puma', '~> 3.12.1'
 gem 'rake', '~> 12.3.2'
 gem 'redis', '~> 4.1.2'
 gem 'redis-rack', '~> 2.0.5'
-gem 'rest-client', '~> 2.0.2'
+gem 'rest-client', '~> 2.1.0'
 gem 'sinatra', '~> 2.0.5'
 gem 'sinatra-contrib', '~> 2.0.5'
 
