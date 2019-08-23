@@ -13,8 +13,8 @@ gem 'rake', '~> 12.3.2'
 gem 'redis', '~> 4.1.2'
 gem 'redis-rack', '~> 2.0.5'
 gem 'rest-client', '~> 2.0.2'
-gem 'sinatra', '~> 2.0.5'
-gem 'sinatra-contrib', '~> 2.0.5'
+gem 'sinatra', '~> 2.0.7'
+gem 'sinatra-contrib', '~> 2.0.7'
 
 group :development do
   gem 'foreman', '~> 0.85.0'
