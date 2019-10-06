@@ -1,9 +1,9 @@
+/!\ This project is now deprecated in favor of [Tentacles dashboard](https://github.com/jveillet/tentacles-dashboard).
+
 # Tentacles
 
 All the pull requests from your repositories (and the organizations you belong to) curated into a single web page.
 All the results are displayed in a Github fashion (like the Pulls tab), but separated by repo.
-
-_(Screencap coming later)_
 
 __*This is a very very early development version, use at your own risks.*__
 
