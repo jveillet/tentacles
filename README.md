@@ -1,4 +1,4 @@
-/!\ This project is now deprecated in favor of [Tentacles dashboard](https://github.com/jveillet/tentacles-dashboard).
+**/!\ This project is now deprecated in favor of [Tentacles dashboard](https://github.com/jveillet/tentacles-dashboard).**
 
 # Tentacles
 
